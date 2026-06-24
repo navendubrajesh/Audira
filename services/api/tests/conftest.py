@@ -38,3 +38,20 @@ async def client() -> AsyncGenerator[AsyncClient, None]:
         transport = ASGITransport(app=app)
         async with AsyncClient(transport=transport, base_url="http://test") as ac:
             yield ac
+
+
+@pytest.fixture(autouse=True)
+def mock_redis_enqueue(monkeypatch):
+    async def noop(*_args, **_kwargs):
+        return None
+
+    monkeypatch.setattr("app.routers.inference.enqueue_inference_job", noop)
+    monkeypatch.setattr("app.routers.inference.enqueue_batch_jobs", noop)
+
+
+@pytest.fixture
+async def db_session():
+    from app.db.session import async_session_factory
+
+    async with async_session_factory() as session:
+        yield session

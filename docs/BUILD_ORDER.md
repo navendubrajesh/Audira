@@ -14,7 +14,7 @@ Scaffold monorepo, design system, Docker/CI, docs ledger — **no TCA story star
 |---:|---|---|---|---|---|---|---|---|
 | 1 | TCA-067 | P1 | Foundation | Must | E17 | Platform / Shared Backend |  | done |
 | 2 | TCA-072 | P1 | Foundation | Must | E18 | Platform / Shared Backend |  | done |
-| 3 | TCA-068 | P1 | Foundation | Must | E17 | Platform / Shared Backend |  | pending |
+| 3 | TCA-068 | P1 | Foundation | Must | E17 | Platform / Shared Backend |  | done |
 | 4 | TCA-001 | P1 | Foundation | Must | E01 | Communications Studio (Web App |  | pending |
 | 5 | TCA-004 | P1 | Foundation | Must | E01 | Admin & Governance Console |  | pending |
 | 6 | TCA-005 | P1 | Foundation | Must | E01 | Admin & Governance Console |  | pending |

@@ -7,15 +7,18 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
 from app.db.base import Base
-from app.db.session import engine
-from app.models import audit_log, inference_job, user  # noqa: F401 — register models
-from app.routers import admin, auth, health, inference, webhooks
+from app.db.session import engine, async_session_factory
+from app.models import audit_log, inference_job, tenant, user  # noqa: F401 — register models
+from app.routers import admin, auth, health, inference, tenant, webhooks
+from app.services.tenant_service import ensure_default_tenant
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+    async with async_session_factory() as session:
+        await ensure_default_tenant(session)
     yield
     await engine.dispose()
 
@@ -44,6 +47,7 @@ def create_app() -> FastAPI:
     app.include_router(health.router)
     app.include_router(auth.router)
     app.include_router(inference.router)
+    app.include_router(tenant.router)
     app.include_router(webhooks.router)
     app.include_router(admin.router)
 

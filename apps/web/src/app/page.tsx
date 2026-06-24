@@ -4,6 +4,7 @@ import { productName, productTagline } from "@resonode/design-tokens";
 
 import { AppHeader } from "@/components/app-header";
 import { InferencePanel } from "@/components/inference/inference-panel";
+import { ResidencyCard } from "@/components/residency-card";
 import { ScoreGauge } from "@/components/score-gauge";
 import { StatusBadge } from "@/components/status-badge";
 import type { SessionUser } from "@/lib/auth";
@@ -38,6 +39,7 @@ export default async function HomePage() {
         <div className="mb-6 flex flex-wrap gap-2">
           <StatusBadge label="TCA-067 — SSO & RBAC" variant="success" />
           <StatusBadge label="TCA-072 — Inference queue" variant="success" />
+          <StatusBadge label="TCA-068 — Data residency" variant="success" />
         </div>
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>
@@ -70,7 +72,12 @@ export default async function HomePage() {
           </div>
         </div>
 
-        {user ? <InferencePanel user={user} /> : null}
+        {user ? (
+          <>
+            <InferencePanel user={user} />
+            <ResidencyCard />
+          </>
+        ) : null}
       </section>
     </main>
   );
