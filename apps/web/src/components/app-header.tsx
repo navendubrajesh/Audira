@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { cookies } from "next/headers";
 
 import { UserMenu } from "@/components/user-menu";
@@ -33,6 +34,16 @@ export async function AppHeader() {
             R
           </div>
           <span className="font-semibold text-neutral-900">Resonode</span>
+          {user ? (
+            <nav className="ml-6 flex gap-4 text-sm text-neutral-600">
+              <Link href="/" className="hover:text-brand-600">
+                Home
+              </Link>
+              <Link href="/analyze" className="hover:text-brand-600">
+                Analyze
+              </Link>
+            </nav>
+          ) : null}
         </div>
         {user ? (
           <UserMenu user={user} />

@@ -53,6 +53,17 @@ PERMISSIONS: dict[str, frozenset[Role]] = {
     "standards.manage": frozenset(
         {Role.OWNER, Role.ADMIN, Role.BRAND_MANAGER, Role.POLICY_COMPLIANCE}
     ),
+    "audiences.manage": frozenset(
+        {
+            Role.OWNER,
+            Role.ADMIN,
+            Role.COMMS_MANAGER,
+            Role.INTERNAL_COMMS_LEAD,
+        }
+    ),
+    "governance.view": frozenset(
+        {Role.OWNER, Role.ADMIN, Role.ML_PLATFORM_ENG, Role.SECURITY, Role.POLICY_COMPLIANCE}
+    ),
 }
 
 

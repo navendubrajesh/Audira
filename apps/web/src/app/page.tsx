@@ -40,6 +40,7 @@ export default async function HomePage() {
           <StatusBadge label="TCA-067 — SSO & RBAC" variant="success" />
           <StatusBadge label="TCA-072 — Inference queue" variant="success" />
           <StatusBadge label="TCA-068 — Data residency" variant="success" />
+          <StatusBadge label="Phase 1 — Analysis platform" variant="success" />
         </div>
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>
@@ -52,7 +53,13 @@ export default async function HomePage() {
             <p className="mt-4 text-lg text-neutral-600">{productTagline}</p>
             <p className="mt-6 text-sm text-neutral-500">
               {user ? (
-                <>Inference jobs run on a decoupled GPU tier via Redis queue.</>
+                <>
+                  Run{" "}
+                  <Link href="/analyze" className="font-medium text-brand-600 hover:underline">
+                    communications analysis
+                  </Link>{" "}
+                  or submit jobs to the inference queue.
+                </>
               ) : (
                 <>
                   <Link href="/login" className="font-medium text-brand-600 hover:underline">

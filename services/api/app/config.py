@@ -7,7 +7,7 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
     app_name: str = "Resonode API"
-    app_version: str = "0.3.0-tca068"
+    app_version: str = "0.4.0-phase1"
     environment: str = "development"
     debug: bool = False
 
