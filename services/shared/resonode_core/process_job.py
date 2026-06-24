@@ -6,15 +6,9 @@ from datetime import UTC, datetime
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from resonode_core.inference.provider import HttpGpuProvider, MockGpuProvider
+from resonode_core.inference.factory import build_provider
 from resonode_core.inference.types import InferenceRequest, Modality
 from resonode_core.sla import check_sla
-
-
-def build_provider(base_url: str = "", api_key: str = ""):
-    if base_url:
-        return HttpGpuProvider(base_url, api_key)
-    return MockGpuProvider()
 
 
 async def refresh_batch_counts(session: AsyncSession, batch_model, job_model, batch_id: uuid.UUID) -> None:
@@ -52,7 +46,11 @@ async def execute_inference_job(
     if not job or job.status not in ("queued",):
         return {"skipped": True, "job_id": str(job_id)}
 
-    provider = build_provider(inference_base_url, inference_api_key)
+    provider = build_provider(
+        model_id=job.model_id,
+        inference_base_url=inference_base_url,
+        inference_api_key=inference_api_key,
+    )
     job.status = "running"
     job.started_at = datetime.now(UTC)
     await session.commit()

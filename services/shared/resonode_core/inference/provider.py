@@ -16,6 +16,9 @@ class MockGpuProvider:
 
     name = "mock-gpu"
 
+    def __init__(self, model_label: str = "mock-gpu") -> None:
+        self.model_label = model_label
+
     async def run(self, request: InferenceRequest) -> InferenceResult:
         import asyncio
         import time
@@ -34,7 +37,10 @@ class MockGpuProvider:
                 "status": "ok",
                 "modality": request.modality.value,
                 "model_id": request.model_id,
+                "model": self.model_label,
+                "license": "CC-BY-NC-4.0 (stub — connect GPU tier for real inference)",
                 "metrics_stub": {"attention": 72, "clarity": 68},
+                "raw_fmri_vertices": 10242,
             },
             latency_ms=max(latency_ms, int(delay * 1000)),
             cost_usd=estimate_cost(request.modality),

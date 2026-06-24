@@ -18,6 +18,7 @@ type JobState = {
 
 export function InferenceDemo() {
   const [modality, setModality] = useState<"text" | "multimodal">("text");
+  const [modelId, setModelId] = useState("facebook/tribev2");
   const [job, setJob] = useState<JobState | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -53,6 +54,7 @@ export function InferenceDemo() {
         },
         body: JSON.stringify({
           modality,
+          model_id: modelId,
           payload: { sample: true, text: "Sample communication artifact" },
         }),
       });
@@ -75,6 +77,14 @@ export function InferenceDemo() {
   return (
     <div className="mt-4 space-y-4">
       <div className="flex flex-wrap items-center gap-3">
+        <select
+          value={modelId}
+          onChange={(e) => setModelId(e.target.value)}
+          className="rounded-md border border-neutral-300 px-3 py-2 text-sm"
+        >
+          <option value="facebook/tribev2">TRIBE v2 (facebook/tribev2)</option>
+          <option value="tribe-v2-stub">Stub (no GPU)</option>
+        </select>
         <select
           value={modality}
           onChange={(e) => setModality(e.target.value as "text" | "multimodal")}

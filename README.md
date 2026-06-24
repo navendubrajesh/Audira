@@ -65,6 +65,8 @@ npm run test:web
 ## Key docs
 
 - [Technology baseline](docs/TECHNOLOGY_BASELINE.md) — standing stack decision
+- [Deployment](docs/DEPLOYMENT.md) — GitHub repo → Vercel + Render + GPU tier
+- [TRIBE v2 setup](docs/TRIBE_V2.md) — [facebook/tribev2](https://huggingface.co/facebook/tribev2) on Hugging Face
 - [Team & hand-offs](docs/TEAM.md)
 - [Build order](docs/BUILD_ORDER.md)
 - [Progress ledger](docs/ledger/PROGRESS_LEDGER.md)
