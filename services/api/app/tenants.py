@@ -1,0 +1,5 @@
+"""Default tenant for pilot / dev."""
+
+import uuid
+
+DEFAULT_TENANT_ID = uuid.UUID("00000000-0000-4000-8000-000000000001")

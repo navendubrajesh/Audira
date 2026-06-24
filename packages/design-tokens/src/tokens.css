@@ -1,0 +1,15 @@
+:root {
+  --color-brand-500: #3380ff;
+  --color-brand-600: #1a5ff5;
+  --color-brand-700: #144be1;
+  --color-neutral-50: #f8fafc;
+  --color-neutral-900: #0f172a;
+  --color-success: #059669;
+  --color-warning: #d97706;
+  --color-danger: #dc2626;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-indic: "Noto Sans Devanagari", "Inter", sans-serif;
+  --radius-md: 0.5rem;
+  --sidebar-width: 16rem;
+  --header-height: 3.5rem;
+}
