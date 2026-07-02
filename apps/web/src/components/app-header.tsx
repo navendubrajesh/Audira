@@ -51,12 +51,12 @@ export async function AppHeader() {
         {user ? (
           <UserMenu user={user} />
         ) : (
-          <a
+          <Link
             href="/login"
             className="rounded-md bg-brand-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-brand-700"
           >
             Sign in
-          </a>
+          </Link>
         )}
       </div>
     </header>

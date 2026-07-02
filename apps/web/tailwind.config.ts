@@ -35,10 +35,10 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: typography.fontSans.split(",").map((f) => f.trim()),
-        display: ["Outfit", "IBM Plex Sans", "sans-serif"],
+        sans: ["var(--font-ibm-plex-sans)", "IBM Plex Sans", "system-ui", "sans-serif"],
+        display: ["var(--font-outfit)", "Outfit", "IBM Plex Sans", "sans-serif"],
         indic: typography.fontIndic.split(",").map((f) => f.trim()),
-        mono: ["JetBrains Mono", "ui-monospace", "monospace"],
+        mono: ["var(--font-jetbrains-mono)", "JetBrains Mono", "ui-monospace", "monospace"],
       },
       borderRadius: {
         ...radii,
