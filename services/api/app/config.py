@@ -34,27 +34,10 @@ class Settings(BaseSettings):
     inference_api_key: str = ""
     inference_monthly_cost_cap_usd: float = 500.0
 
-    # Direct social OAuth (users authenticate straight with each provider)
-    # Callback URL registered with each provider must point here:
-    oauth_redirect_uri: str = "http://localhost:8000/auth/callback"
-
     # Google OAuth (console.cloud.google.com → Credentials → OAuth client ID)
+    oauth_redirect_uri: str = "http://localhost:8000/auth/callback"
     google_client_id: str = ""
     google_client_secret: str = ""
-
-    # GitHub OAuth (github.com/settings/developers → OAuth Apps)
-    github_client_id: str = ""
-    github_client_secret: str = ""
-
-    # LinkedIn OAuth (linkedin.com/developers → Apps → Auth)
-    linkedin_client_id: str = ""
-    linkedin_client_secret: str = ""
-
-    # Sign in with Apple (developer.apple.com → Certificates, Identifiers & Profiles)
-    apple_client_id: str = ""  # Services ID, e.g. run.audira.web
-    apple_team_id: str = ""
-    apple_key_id: str = ""
-    apple_private_key: str = ""  # contents of the .p8 key (PEM)
 
     # WorkOS Directory Sync / SCIM (optional — enterprise provisioning only)
     workos_api_key: str = ""

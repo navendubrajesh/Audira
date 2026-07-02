@@ -1,5 +1,4 @@
 import { LoginCard } from "@/components/auth/login-card";
-import { getEnabledProviders } from "@/lib/auth";
 
 export default function LoginPage({
   searchParams,
@@ -20,6 +19,5 @@ async function LoginCardWrapper({
 }) {
   const params = await searchParams;
   const devMode = params.dev === "1" || process.env.NODE_ENV === "development";
-  const providers = devMode ? [] : await getEnabledProviders();
-  return <LoginCard devMode={devMode} providers={providers} />;
+  return <LoginCard devMode={devMode} />;
 }

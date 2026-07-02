@@ -1,8 +1,8 @@
-"""Auth API routes — direct social OAuth + session."""
+"""Auth API routes — Google OAuth + session."""
 
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, Form, HTTPException, Query, status
+from fastapi import APIRouter, Depends, HTTPException, Query, status
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -33,59 +33,32 @@ class RoleInfo(BaseModel):
     label: str
 
 
-class ProviderInfo(BaseModel):
-    id: str
-    label: str
-
-
 class LogoutResponse(BaseModel):
     status: str = "ok"
 
 
-@router.get("/providers", response_model=list[ProviderInfo])
-async def list_providers() -> list[ProviderInfo]:
-    """Social providers that have credentials configured on this deployment."""
-    return [ProviderInfo(**p) for p in oauth.configured_providers()]
-
-
 @router.get("/login")
-async def login(
-    return_url: str | None = Query(default=None),
-    provider: str | None = Query(default=None),
-) -> RedirectResponse:
-    if provider is None:
-        if settings.auth_mode == "development":
-            return RedirectResponse(f"{settings.web_app_url}/login?dev=1")
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="A sign-in provider is required.",
-        )
-
-    if provider not in oauth.SUPPORTED_PROVIDERS:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail=f"Unsupported provider: {provider}",
-        )
-
-    if not oauth.is_provider_configured(provider):
+async def login(return_url: str | None = Query(default=None)) -> RedirectResponse:
+    if not oauth.is_google_configured():
         if settings.auth_mode == "development":
             return RedirectResponse(f"{settings.web_app_url}/login?dev=1")
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail=f"{oauth.PROVIDER_LABELS[provider]} sign-in is not configured.",
+            detail="Google sign-in is not configured.",
         )
 
-    state = oauth.sign_state(provider, return_url or settings.web_app_url)
-    return RedirectResponse(oauth.build_authorize_url(provider, state))
+    state = oauth.sign_state(return_url or settings.web_app_url)
+    return RedirectResponse(oauth.build_authorize_url(state))
 
 
-async def _complete_oauth_callback(
-    code: str,
-    state: str | None,
-    db: AsyncSession,
-    error: str | None = None,
+@router.get("/callback")
+async def callback(
+    code: str | None = Query(default=None),
+    state: str | None = Query(default=None),
+    error: str | None = Query(default=None),
+    db: AsyncSession = Depends(get_db),
 ) -> RedirectResponse:
-    if error:
+    if error or not code:
         return RedirectResponse(
             f"{settings.web_app_url}/login?error=oauth",
             status_code=status.HTTP_303_SEE_OTHER,
@@ -94,7 +67,7 @@ async def _complete_oauth_callback(
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Missing state")
 
     try:
-        provider, return_url = oauth.verify_state(state)
+        return_url = oauth.verify_state(state)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -102,14 +75,14 @@ async def _complete_oauth_callback(
         ) from exc
 
     try:
-        email, provider_user_id = await oauth.complete_login(provider, code)
+        email, google_user_id = await oauth.complete_login(code)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="We could not complete sign-in. Please try again.",
         ) from exc
 
-    scoped_id = f"{provider}:{provider_user_id}"
+    scoped_id = f"google:{google_user_id}"
     existing = await get_user_by_workos_id(db, scoped_id)
     preserve_roles = parse_roles(existing.roles) if existing and existing.roles else None
 
@@ -135,45 +108,13 @@ async def _complete_oauth_callback(
         actor_user_id=user.id,
         actor_email=user.email,
         resource="oauth",
-        metadata={"provider": provider},
+        metadata={"provider": "google"},
     )
 
-    # Token in URL fragment — not sent to server logs or Referer headers
     return RedirectResponse(
         f"{return_url}/auth/callback#token={token}",
         status_code=status.HTTP_303_SEE_OTHER,
     )
-
-
-@router.get("/callback")
-async def callback(
-    code: str | None = Query(default=None),
-    state: str | None = Query(default=None),
-    error: str | None = Query(default=None),
-    db: AsyncSession = Depends(get_db),
-) -> RedirectResponse:
-    if not code:
-        return RedirectResponse(
-            f"{settings.web_app_url}/login?error=oauth",
-            status_code=status.HTTP_303_SEE_OTHER,
-        )
-    return await _complete_oauth_callback(code, state, db, error)
-
-
-@router.post("/callback")
-async def callback_form(
-    code: str | None = Form(default=None),
-    state: str | None = Form(default=None),
-    error: str | None = Form(default=None),
-    db: AsyncSession = Depends(get_db),
-) -> RedirectResponse:
-    """Apple uses response_mode=form_post, so the code arrives as a POST body."""
-    if not code:
-        return RedirectResponse(
-            f"{settings.web_app_url}/login?error=oauth",
-            status_code=status.HTTP_303_SEE_OTHER,
-        )
-    return await _complete_oauth_callback(code, state, db, error)
 
 
 @router.post("/dev-login")
