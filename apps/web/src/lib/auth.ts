@@ -63,6 +63,18 @@ export async function logout(): Promise<void> {
   clearSession();
 }
 
-export function getLoginUrl(): string {
-  return `${API_URL}/auth/login`;
+export const OAUTH_PROVIDERS = [
+  { id: "GoogleOAuth", label: "Google" },
+  { id: "AppleOAuth", label: "Apple" },
+  { id: "GitHubOAuth", label: "GitHub" },
+  { id: "LinkedInOAuth", label: "LinkedIn" },
+] as const;
+
+export type OAuthProviderId = (typeof OAUTH_PROVIDERS)[number]["id"];
+
+export function getLoginUrl(provider?: OAuthProviderId): string {
+  const params = new URLSearchParams();
+  if (provider) params.set("provider", provider);
+  const query = params.toString();
+  return `${API_URL}/auth/login${query ? `?${query}` : ""}`;
 }

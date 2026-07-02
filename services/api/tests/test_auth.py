@@ -63,6 +63,13 @@ async def test_scim_webhook_provisions_user(client: AsyncClient) -> None:
 
 
 @pytest.mark.asyncio
+async def test_oauth_login_rejects_unknown_provider(client: AsyncClient) -> None:
+    response = await client.get("/auth/login", params={"provider": "TwitterOAuth"}, follow_redirects=False)
+    assert response.status_code == 400
+    assert "Unsupported provider" in response.json()["detail"]
+
+
+@pytest.mark.asyncio
 async def test_logout_audited(client: AsyncClient) -> None:
     login = await client.post(
         "/auth/dev-login", params={"email": "sec@test.com", "role": "security"}

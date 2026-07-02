@@ -1,6 +1,6 @@
 """Auth API routes — WorkOS SSO + session."""
 
-from typing import Annotated
+from typing import Annotated, cast
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from fastapi.responses import RedirectResponse
@@ -11,7 +11,13 @@ from app.auth.dependencies import get_current_user, require_permission
 from app.auth.principal import Principal
 from app.auth.roles import ROLE_LABELS, Role, parse_roles
 from app.auth.session import create_session_token
-from app.auth.workos_client import authenticate_with_code, get_authorization_url, is_workos_configured
+from app.auth.workos_client import (
+    OAUTH_PROVIDERS,
+    OAuthProvider,
+    authenticate_with_code,
+    get_authorization_url,
+    is_workos_configured,
+)
 from app.config import settings
 from app.db.session import get_db
 from app.services.audit import record_audit
@@ -38,7 +44,19 @@ class LogoutResponse(BaseModel):
 
 
 @router.get("/login")
-async def login(return_url: str | None = Query(default=None)) -> RedirectResponse:
+async def login(
+    return_url: str | None = Query(default=None),
+    provider: str | None = Query(default=None),
+) -> RedirectResponse:
+    oauth_provider: OAuthProvider = "authkit"
+    if provider:
+        if provider not in OAUTH_PROVIDERS:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=f"Unsupported provider: {provider}",
+            )
+        oauth_provider = cast(OAuthProvider, provider)
+
     if not is_workos_configured():
         if settings.auth_mode == "development":
             return RedirectResponse(f"{settings.web_app_url}/login?dev=1")
@@ -48,7 +66,7 @@ async def login(return_url: str | None = Query(default=None)) -> RedirectRespons
         )
 
     state = return_url or settings.web_app_url
-    return RedirectResponse(get_authorization_url(state=state))
+    return RedirectResponse(get_authorization_url(state=state, provider=oauth_provider))
 
 
 @router.get("/callback")
@@ -94,6 +112,8 @@ async def callback(
         workos_user_id=user.workos_user_id,
     )
 
+    auth_provider = auth_data.get("authentication_method") or auth_data.get("oauth_provider") or "workos"
+
     await record_audit(
         db,
         tenant_id=user.tenant_id,
@@ -101,7 +121,7 @@ async def callback(
         actor_user_id=user.id,
         actor_email=user.email,
         resource="sso",
-        metadata={"provider": "workos"},
+        metadata={"provider": auth_provider},
     )
 
     redirect_base = state or settings.web_app_url
