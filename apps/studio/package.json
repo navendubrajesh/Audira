@@ -14,7 +14,8 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "lint": "eslint .",
-    "gen:roadmap": "python scripts/gen_roadmap.py"
+    "gen:roadmap": "python scripts/gen_roadmap.py",
+    "sync:backlog": "python scripts/sync_backlog.py"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

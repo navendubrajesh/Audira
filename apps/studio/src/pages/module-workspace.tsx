@@ -5,7 +5,9 @@ import {
   ComposeTab,
   GenericTabPlaceholder,
 } from "@studio/components/analyzer/analyzer-workspace";
-import { VerticalEpicGrid } from "@studio/pages/governance";
+import { ScheduleTabPlaceholder } from "@studio/components/shared/schedule-tab";
+import { ActivityTab, InsightsTab } from "@studio/components/shared/activity-insights-tabs";
+import { VerticalEpicGrid } from "@studio/pages/governance/index";
 import { EngagementHelperPage } from "@studio/pages/engagement-helper";
 import type { ModuleId } from "@studio/types";
 
@@ -40,7 +42,7 @@ export function ModuleWorkspace({ module }: { module: ModuleId }) {
 
   if (activeTab === "analyze") {
     if (module === "linkedin" || module === "social" || module === "blog" || module === "placement") {
-      return <AnalyzerWorkspace />;
+      return <AnalyzerWorkspace module={module} />;
     }
     return (
       <GenericTabPlaceholder tab="analyze" storyIds={["TCA-038", "TCA-083"]}>
@@ -61,6 +63,22 @@ export function ModuleWorkspace({ module }: { module: ModuleId }) {
         </div>
       </div>
     );
+  }
+
+  if (activeTab === "schedule") {
+    return (
+      <div className="h-full overflow-y-auto">
+        <ScheduleTabPlaceholder module={module} />
+      </div>
+    );
+  }
+
+  if (activeTab === "activity") {
+    return <ActivityTab />;
+  }
+
+  if (activeTab === "insights") {
+    return <InsightsTab />;
   }
 
   return (

@@ -15,6 +15,7 @@ from app.models import (  # noqa: F401 — register models
     context,
     governance,
     inference_job,
+    studio,
     tenant,
     user,
 )
@@ -31,6 +32,7 @@ from app.routers import (
     inference,
     observability,
     privacy,
+    studio,
     tenant,
     webhooks,
 )
@@ -88,6 +90,7 @@ def create_app() -> FastAPI:
     app.include_router(privacy.router)
     app.include_router(observability.router)
     app.include_router(features.router)
+    app.include_router(studio.router)
     app.include_router(webhooks.router)
     app.include_router(admin.router)
 

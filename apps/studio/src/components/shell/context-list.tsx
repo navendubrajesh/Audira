@@ -1,12 +1,16 @@
 import { ChevronDown, Plus, Search } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { ScoreChip } from "@studio/components/ui/score-chip";
 import { MODULE_CONFIG } from "@studio/config/modules";
 import { cn } from "@studio/lib/utils";
+import { createDraft } from "@studio/services/studio-api";
+import { useDraftsStore } from "@studio/store/drafts-store";
 import { useUiStore } from "@studio/store/ui-store";
 import type { DraftItem, ModuleId } from "@studio/types";
+
+const DRAFT_MODULES: ModuleId[] = ["social", "linkedin", "placement", "blog"];
 
 function ContextRow({
   item,
@@ -53,10 +57,24 @@ export function ContextList({ module }: { module: ModuleId }) {
   const { contextId } = useParams();
   const navigate = useNavigate();
   const { activeFilter, setActiveFilter, contextWidth, setContextWidth } = useUiStore();
+  const { getForModule, load } = useDraftsStore();
   const [collapsed, setCollapsed] = useState<Record<string, boolean>>({});
 
+  useEffect(() => {
+    if (DRAFT_MODULES.includes(module)) {
+      void load(module);
+    }
+  }, [module, load]);
+
+  const apiDrafts = DRAFT_MODULES.includes(module) ? getForModule(module) : [];
+
   const filteredSections = useMemo(() => {
-    return config.sections.map((section) => ({
+    const sections = config.sections.map((section) => {
+      const items =
+        section.id === "drafts" && apiDrafts.length ? apiDrafts : section.items;
+      return { ...section, items };
+    });
+    return sections.map((section) => ({
       ...section,
       items: section.items.filter((item) => {
         if (activeFilter === "All" || activeFilter === config.filterPills[0]) return true;
@@ -71,7 +89,7 @@ export function ContextList({ module }: { module: ModuleId }) {
         return true;
       }),
     }));
-  }, [config, activeFilter]);
+  }, [config, activeFilter, apiDrafts]);
 
   return (
     <aside
@@ -86,6 +104,13 @@ export function ContextList({ module }: { module: ModuleId }) {
             type="button"
             className="rounded-md p-1.5 text-primary hover:bg-primary/10"
             aria-label="Create new item"
+            onClick={() => {
+              if (!DRAFT_MODULES.includes(module)) return;
+              void createDraft({ vertical: module, title: "New draft", body: "" }).then((d) => {
+                void load(module);
+                navigate(`/${module}/${d.id}/compose`);
+              });
+            }}
           >
             <Plus className="h-4 w-4" />
           </button>

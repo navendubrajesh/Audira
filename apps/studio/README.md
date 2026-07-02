@@ -7,12 +7,16 @@ Built with **React + TypeScript + Vite**, **Tailwind CSS**, **React Router**, **
 ## Quick start
 
 ```bash
-# From repo root
+# From repo root — start API first (port 8000)
+# cd services/api && uvicorn app.main:app --reload
+
 npm install
 npm run dev:studio
 ```
 
-Open [http://localhost:5174](http://localhost:5174).
+Open [http://localhost:5174](http://localhost:5174). **Sign in** with dev SSO (admin@audira.run) when `AUTH_MODE=development`.
+
+Set `VITE_API_URL=http://localhost:8000` in `apps/studio/.env.local` (see `.env.example`).
 
 ## Information architecture
 
@@ -43,6 +47,7 @@ Global top bar: search / “Ask Audira”, connection status, theme toggle.
 Regenerate traceability table:
 
 ```bash
+npm run sync:backlog --workspace=@audira/studio
 npm run gen:roadmap --workspace=@audira/studio
 ```
 

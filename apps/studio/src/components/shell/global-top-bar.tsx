@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@studio/components/ui/button";
 import { PRODUCT_NAME } from "@studio/mock/fixtures";
 import { getConnectionStatus } from "@studio/services/integrations";
+import { UserMenu } from "@studio/components/auth/user-menu";
 import { useUiStore } from "@studio/store/ui-store";
 
 export function GlobalTopBar() {
@@ -53,13 +54,7 @@ export function GlobalTopBar() {
         {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
       </Button>
 
-      <button
-        type="button"
-        className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground"
-        aria-label="User menu"
-      >
-        NB
-      </button>
+      <UserMenu />
     </header>
   );
 }

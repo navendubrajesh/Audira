@@ -200,3 +200,44 @@ export function storyById(id: string): BacklogStory | undefined {
 export function storiesByStatus(status: BacklogStory["Status"]) {
   return backlogStories.filter((s) => s.Status === status);
 }
+
+export const attentionQueue: DraftItem[] = [
+  ...socialDrafts.filter((d) => d.status === "review" || (d.compositeScore ?? 100) < 60),
+  ...linkedinDrafts.filter((d) => d.status === "review" || (d.compositeScore ?? 100) < 70),
+  ...placementDrafts.filter((d) => d.status === "review"),
+  ...blogDrafts.filter((d) => d.excerpt.toLowerCase().includes("seo")),
+].sort((a, b) => (a.compositeScore ?? 0) - (b.compositeScore ?? 0));
+
+export const scheduledItems: DraftItem[] = [
+  ...socialDrafts.filter((d) => d.status === "scheduled"),
+  ...blogDrafts.filter((d) => d.status === "scheduled"),
+  ...linkedinDrafts.filter((d) => d.status === "scheduled"),
+];
+
+export const commsHealthWidgets = [
+  {
+    label: "Program effectiveness",
+    value: 74,
+    delta: "+6 vs last month",
+    storyId: "TCA-014",
+  },
+  {
+    label: "Prediction accuracy",
+    value: 82,
+    delta: "Within 8% on LinkedIn pilot",
+    storyId: "TCA-038",
+  },
+  {
+    label: "Guardrail pass rate",
+    value: 96,
+    delta: "2 inclusive-language flags this week",
+    storyId: "TCA-059",
+  },
+  {
+    label: "Approval SLA",
+    value: 18,
+    delta: "Avg 18h to publish gate",
+    storyId: "TCA-013",
+    unit: "hours",
+  },
+];

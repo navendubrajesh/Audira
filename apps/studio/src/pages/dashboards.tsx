@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import {
   Bar,
   BarChart,
@@ -11,8 +13,18 @@ import {
 } from "recharts";
 
 import { FeatureGrid } from "@studio/components/shared/feature-card";
+import { PermissionGate } from "@studio/components/auth/permission-gate";
+import { getAnalyticsDashboard } from "@studio/services/features-api";
+import { getInferenceMetrics } from "@studio/services/governance-api";
 import { ScoreChip } from "@studio/components/ui/score-chip";
-import { storiesForEpic } from "@studio/mock/fixtures";
+import { StoryIdBadge } from "@studio/components/ui/badge";
+import {
+  attentionQueue,
+  commsHealthWidgets,
+  scheduledItems,
+  storiesForEpic,
+} from "@studio/mock/fixtures";
+import type { DraftItem } from "@studio/types";
 
 const EPICS = [
   "E01", "E02", "E03", "E04", "E05", "E06", "E07", "E08", "E09", "E10", "E11",
@@ -33,14 +45,73 @@ const channelData = [
   { channel: "Placement", score: 71 },
 ];
 
-// TODO(TCA-014): Real analytics dashboards from program insights API
+const VERTICAL_PATH: Partial<Record<DraftItem["vertical"], string>> = {
+  social: "/social",
+  linkedin: "/linkedin",
+  placement: "/placement",
+  blog: "/blog",
+  analytics: "/analytics",
+  assets: "/assets",
+  governance: "/governance",
+  settings: "/settings",
+};
+
 export function AnalyticsDashboard() {
   const e14 = storiesForEpic("E14").map((s) => s.ID);
+  const [dashboard, setDashboard] = useState<{
+    avg_composite_score: number;
+    analyses_count: number;
+    by_channel: Array<{ channel: string; avg_score: number; count: number }>;
+  } | null>(null);
+  const [inference, setInference] = useState<{
+    jobs_completed: number;
+    p95_latency_ms: number;
+    monthly_spend_usd: number;
+    monthly_cap_usd: number;
+  } | null>(null);
+
+  const channelChart =
+    dashboard?.by_channel.map((c) => ({
+      channel: c.channel,
+      score: c.avg_score,
+    })) ?? channelData;
+
+  useEffect(() => {
+    void getAnalyticsDashboard().then(setDashboard).catch(() => setDashboard(null));
+    void getInferenceMetrics()
+      .then(setInference)
+      .catch(() => setInference(null));
+  }, []);
 
   return (
     <div className="h-full overflow-y-auto p-6">
       <h2 className="font-display text-xl font-semibold">Analytics & Insights Console</h2>
-      <p className="text-sm text-muted-foreground">E14 — Program health, team scorecards, benchmarking</p>
+      <p className="text-sm text-muted-foreground">
+        E14 — {dashboard ? `${dashboard.analyses_count} analyses · avg ${dashboard.avg_composite_score}` : "Loading…"}
+      </p>
+
+      <PermissionGate permission="audit.view">
+        {inference ? (
+          <div className="mt-4 grid gap-3 sm:grid-cols-4">
+            <div className="rounded-lg border border-border p-3 text-sm">
+              <p className="text-xs text-muted-foreground">Jobs completed</p>
+              <p className="font-display text-xl font-bold">{inference.jobs_completed}</p>
+            </div>
+            <div className="rounded-lg border border-border p-3 text-sm">
+              <p className="text-xs text-muted-foreground">P95 latency</p>
+              <p className="font-display text-xl font-bold">{inference.p95_latency_ms}ms</p>
+            </div>
+            <div className="rounded-lg border border-border p-3 text-sm">
+              <p className="text-xs text-muted-foreground">Monthly spend</p>
+              <p className="font-display text-xl font-bold">${inference.monthly_spend_usd.toFixed(2)}</p>
+            </div>
+            <div className="rounded-lg border border-border p-3 text-sm">
+              <p className="text-xs text-muted-foreground">Spend cap</p>
+              <p className="font-display text-xl font-bold">${inference.monthly_cap_usd.toFixed(0)}</p>
+            </div>
+          </div>
+        ) : null}
+      </PermissionGate>
 
       <div className="mt-6 grid gap-4 lg:grid-cols-2">
         <div className="rounded-lg border border-border bg-surface-raised p-4 shadow-card">
@@ -59,7 +130,7 @@ export function AnalyticsDashboard() {
         <div className="rounded-lg border border-border bg-surface-raised p-4 shadow-card">
           <h3 className="mb-3 text-sm font-semibold">Score by vertical</h3>
           <ResponsiveContainer width="100%" height={200}>
-            <BarChart data={channelData}>
+            <BarChart data={channelChart}>
               <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
               <XAxis dataKey="channel" tick={{ fontSize: 11 }} />
               <YAxis domain={[0, 100]} tick={{ fontSize: 11 }} />
@@ -100,6 +171,73 @@ export function HomeDashboard() {
           </div>
         ))}
       </div>
+
+      <section className="mt-8">
+        <h2 className="mb-3 font-display text-sm font-semibold">Comms health (E14)</h2>
+        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          {commsHealthWidgets.map((w) => (
+            <div
+              key={w.label}
+              className="rounded-lg border border-border bg-surface-raised p-4 shadow-card"
+            >
+              <div className="flex items-center justify-between gap-2">
+                <p className="text-xs font-medium text-muted-foreground">{w.label}</p>
+                <StoryIdBadge id={w.storyId} />
+              </div>
+              <p className="mt-2 font-display text-2xl font-bold tabular-nums">
+                {w.value}
+                {w.unit ? ` ${w.unit}` : ""}
+              </p>
+              <p className="mt-1 text-xs text-muted-foreground">{w.delta}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-8 grid gap-6 lg:grid-cols-2">
+        <div className="rounded-lg border border-border bg-surface-raised p-4 shadow-card">
+          <h2 className="mb-3 font-display text-sm font-semibold">Attention queue</h2>
+          <ul className="space-y-2">
+            {attentionQueue.map((item) => (
+              <li key={item.id}>
+                <Link
+                  to={`${VERTICAL_PATH[item.vertical] ?? "/home"}/${item.id}/analyze`}
+                  className="flex items-center gap-3 rounded-md px-2 py-2 hover:bg-surface-overlay"
+                >
+                  <ScoreChip score={(item.compositeScore ?? 0) / 10} max={10} />
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-medium">{item.title}</p>
+                    <p className="truncate text-xs text-muted-foreground">{item.excerpt}</p>
+                  </div>
+                  <span className="text-xs capitalize text-muted-foreground">{item.vertical}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="rounded-lg border border-border bg-surface-raised p-4 shadow-card">
+          <h2 className="mb-3 font-display text-sm font-semibold">Upcoming scheduled</h2>
+          <ul className="space-y-2">
+            {scheduledItems.map((item) => (
+              <li key={item.id}>
+                <Link
+                  to={`${VERTICAL_PATH[item.vertical] ?? "/home"}/${item.id}/schedule`}
+                  className="flex items-center gap-3 rounded-md px-2 py-2 hover:bg-surface-overlay"
+                >
+                  <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold uppercase text-primary">
+                    Scheduled
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-medium">{item.title}</p>
+                    <p className="truncate text-xs text-muted-foreground">{item.excerpt}</p>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
       <div className="mt-8">
         <h2 className="mb-3 font-display text-sm font-semibold">All epics (E01–E22)</h2>

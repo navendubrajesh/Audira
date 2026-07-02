@@ -2,20 +2,28 @@ import { FileCode2, Image, Upload } from "lucide-react";
 import { useCallback, useState } from "react";
 
 import { StoryIdBadge } from "@studio/components/ui/badge";
+import { uploadArtifact } from "@studio/services/analyzer";
 import { useAnalyzerStore } from "@studio/store/analyzer-store";
 
-// TODO(TCA-079): Route uploads to asset library with type detection (image/code/diagram)
-// TODO(TCA-004): Block engineering-only artifacts per taxonomy
 export function MultimodalDropZone() {
   const { attachedAssets, addAsset } = useAnalyzerStore();
   const [dragOver, setDragOver] = useState(false);
+  const [message, setMessage] = useState<string | null>(null);
 
   const onDrop = useCallback(
     (e: React.DragEvent) => {
       e.preventDefault();
       setDragOver(false);
       const file = e.dataTransfer.files[0];
-      if (file) addAsset(file.name);
+      if (!file) return;
+      addAsset(file.name);
+      void uploadArtifact(file).then((res) => {
+        if (res.status === "excluded") {
+          setMessage(res.reason ?? "Engineering artifact blocked (TCA-004).");
+        } else {
+          setMessage(`Uploaded — analysis score: ${res.composite_score ?? "pending"}`);
+        }
+      }).catch(() => setMessage("Upload failed."));
     },
     [addAsset],
   );
@@ -38,8 +46,9 @@ export function MultimodalDropZone() {
           dragOver ? "border-primary bg-primary/5" : "border-transparent"
         }`}
       >
-        Drop diagram, screenshot, or code snippet
+        Drop diagram, screenshot, document, or code snippet
       </div>
+      {message ? <p className="mt-2 text-xs text-muted-foreground">{message}</p> : null}
       <ul className="mt-2 space-y-1">
         {attachedAssets.map((name) => (
           <li
