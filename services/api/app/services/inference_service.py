@@ -19,8 +19,8 @@ SHARED = Path(__file__).resolve().parents[3] / "shared"
 if str(SHARED) not in sys.path:
     sys.path.insert(0, str(SHARED))
 
-from resonode_core.cost import estimate_cost, would_exceed_cap
-from resonode_core.inference.types import JobStatus, Modality
+from audira_core.cost import estimate_cost, would_exceed_cap
+from audira_core.inference.types import JobStatus, Modality
 
 
 def payload_hash(payload: dict, modality: str, model_id: str) -> str:

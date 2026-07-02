@@ -1,17 +1,17 @@
 {
-  "name": "resonode",
+  "name": "audira",
   "private": true,
   "version": "0.0.0-phase0",
-  "description": "Resonode — Enterprise Communications Neuro-Analyzer",
+  "description": "Audira.run — Enterprise Communications Neuro-Analyzer",
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
   "scripts": {
-    "dev:web": "npm run dev --workspace=@resonode/web",
-    "build:web": "npm run build --workspace=@resonode/web",
-    "lint:web": "npm run lint --workspace=@resonode/web",
-    "test:web": "npm run test --workspace=@resonode/web"
+    "dev:web": "npm run dev --workspace=@audira/web",
+    "build:web": "npm run build --workspace=@audira/web",
+    "lint:web": "npm run lint --workspace=@audira/web",
+    "test:web": "npm run test --workspace=@audira/web"
   },
   "engines": {
     "node": ">=20"

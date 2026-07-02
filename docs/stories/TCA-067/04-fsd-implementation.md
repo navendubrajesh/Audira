@@ -8,7 +8,7 @@
 |---|---|
 | `app/auth/roles.py` | 11 PRD roles + permission matrix |
 | `app/auth/principal.py` | Authenticated principal |
-| `app/auth/session.py` | Resonode JWT issue/verify |
+| `app/auth/session.py` | Audira.run JWT issue/verify |
 | `app/auth/workos_client.py` | WorkOS OAuth URL + code exchange |
 | `app/auth/dependencies.py` | `get_current_user`, `require_permission`, `require_roles` |
 | `app/models/user.py` | User table |

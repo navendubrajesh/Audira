@@ -10,7 +10,7 @@ from httpx import ASGITransport, AsyncClient
 
 os.environ.setdefault(
     "DATABASE_URL",
-    "sqlite+aiosqlite:///file:resonode_test?mode=memory&cache=shared&uri=true",
+    "sqlite+aiosqlite:///file:audira_test?mode=memory&cache=shared&uri=true",
 )
 os.environ.setdefault("AUTH_MODE", "development")
 os.environ.setdefault(

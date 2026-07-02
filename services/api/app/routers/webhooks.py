@@ -30,14 +30,14 @@ def verify_workos_signature(payload: bytes, signature: str | None, secret: str) 
 
 
 def _extract_role_from_groups(data: dict[str, Any]) -> list[str]:
-    """Map WorkOS directory groups to Resonode roles (configurable per tenant later)."""
+    """Map WorkOS directory groups to Audira.run roles (configurable per tenant later)."""
     groups = data.get("groups") or []
     group_names = {g.get("name", "").lower() for g in groups if isinstance(g, dict)}
     role_map = {
-        "resonode-admin": "admin",
-        "resonode-comms": "comms_manager",
-        "resonode-brand": "brand_manager",
-        "resonode-security": "security",
+        "audira-admin": "admin",
+        "audira-comms": "comms_manager",
+        "audira-brand": "brand_manager",
+        "audira-security": "security",
     }
     roles = [role_map[name] for name in group_names if name in role_map]
     return roles or ["comms_manager"]

@@ -5,8 +5,8 @@
 ### 1. Login (`/login`)
 
 - Centred card on neutral-50 background
-- Resonode logo + product name
-- H1: "Sign in to Resonode"
+- Audira.run logo + product name
+- H1: "Sign in to Audira.run"
 - Subtitle: "Enterprise SSO for your organisation"
 - Primary button (brand-600): "Continue with SSO" → `{API}/auth/login`
 - Footer compliance note (12px neutral-500)
@@ -16,7 +16,7 @@
 
 - Loading spinner + "Completing sign-in…"
 - Reads `token` query param from API redirect
-- Stores session in cookie (`resonode_session`)
+- Stores session in cookie (`audira_session`)
 - Redirects to `/`
 
 ### 3. App shell (authenticated)
@@ -42,4 +42,4 @@
 
 ## Hand-off → FSD
 
-Use design tokens; no custom colours outside `@resonode/design-tokens`.
+Use design tokens; no custom colours outside `@audira/design-tokens`.

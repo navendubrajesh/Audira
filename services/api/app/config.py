@@ -6,7 +6,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
-    app_name: str = "Resonode API"
+    app_name: str = "Audira.run API"
     app_version: str = "0.4.0-phase1"
     environment: str = "development"
     debug: bool = False
@@ -18,14 +18,14 @@ class Settings(BaseSettings):
     web_app_url: str = "http://localhost:3000"
 
     # Database (Render Postgres + pgvector in production)
-    database_url: str = "postgresql+asyncpg://resonode:resonode@localhost:5432/resonode"
+    database_url: str = "postgresql+asyncpg://audira:audira@localhost:5432/audira"
 
     # Redis (cache + Arq job queue)
     redis_url: str = "redis://localhost:6379/0"
 
     # Object storage (Cloudflare R2 / S3)
     object_storage_endpoint: str = ""
-    object_storage_bucket: str = "resonode-artifacts"
+    object_storage_bucket: str = "audira-artifacts"
     object_storage_access_key: str = ""
     object_storage_secret_key: str = ""
 

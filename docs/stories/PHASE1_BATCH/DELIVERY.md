@@ -13,7 +13,7 @@
 | Context | `/context/artifact-types`, `/standards`, `/brand` | TCA-004, TCA-005, TCA-002 |
 | Analysis | `POST /analyze`, `/runs`, `/upload` | TCA-007, TCA-008, TCA-020, TCA-038 |
 | Scoring | readability, jargon, inclusive, brand, tone, composite | TCA-027, TCA-029, TCA-059, TCA-034 |
-| Neuro mapping | `resonode_core.mapping.metrics` | TCA-015 |
+| Neuro mapping | `audira_core.mapping.metrics` | TCA-015 |
 | Governance | `/governance/models`, `/validation-metrics` | TCA-016, TCA-019, TCA-063, TCA-070 |
 | Privacy | `/privacy` | TCA-061, TCA-070 |
 | Observability | `/observability/health-detail` | TCA-075 |

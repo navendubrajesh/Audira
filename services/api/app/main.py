@@ -54,7 +54,7 @@ def create_app() -> FastAPI:
         title=settings.app_name,
         version=settings.app_version,
         description=(
-            "Resonode orchestration API — ingestion, model routing, mapping/calibration, "
+            "Audira.run orchestration API — ingestion, model routing, mapping/calibration, "
             "and governance. GPU inference runs on a decoupled tier."
         ),
         docs_url="/docs",

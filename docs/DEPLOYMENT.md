@@ -4,6 +4,9 @@ Your code lives in one GitHub repo: [github.com/navendubrajesh/Audira](https://g
 
 **GitHub stores and builds code. It does not run your production frontend + backend together.**
 
+> **Step-by-step setup:** [DEPLOY_SETUP.md](./DEPLOY_SETUP.md) — Audira.run domains, Render service names, env vars.  
+> **Full reference:** [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md)
+
 ## What GitHub gives you
 
 | Capability | Frontend | Backend API | TRIBE v2 GPU |
@@ -33,8 +36,9 @@ Every push to `main` can auto-deploy web + API if you connect the repo in Vercel
 
 | Service | Key env vars |
 |---|---|
-| **Vercel** (web) | `NEXT_PUBLIC_API_URL=https://your-api.onrender.com` |
-| **Render** (api) | `INFERENCE_BASE_URL=https://your-tribe-gpu.example.com` |
+| **Vercel** (web @ audira.run) | `NEXT_PUBLIC_API_URL=https://api.audira.run` |
+| **Render** (api) | `WEB_APP_URL=https://audira.run`, `CORS_ORIGINS=["https://audira.run"]` |
+| **Render** (api) | `INFERENCE_BASE_URL=https://inference.audira.run` |
 | **Render** (api) | `INFERENCE_API_KEY=…` |
 | **GPU tier** | `HF_TOKEN=…` (Hugging Face — LLaMA 3.2 is gated) |
 | **GPU tier** | `INFERENCE_API_KEY=…` (must match API) |

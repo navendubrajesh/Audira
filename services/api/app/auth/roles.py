@@ -1,4 +1,4 @@
-"""Resonode RBAC roles and permissions (PRD §11)."""
+"""Audira.run RBAC roles and permissions (PRD §11)."""
 
 from enum import Enum
 

@@ -1,4 +1,4 @@
-# Resonode
+# Audira.run
 
 **Enterprise Communications Neuro-Analyzer** — pre-send, neuro-grounded analysis for IT-services organisations.
 
@@ -65,7 +65,8 @@ npm run test:web
 ## Key docs
 
 - [Technology baseline](docs/TECHNOLOGY_BASELINE.md) — standing stack decision
-- [Deployment](docs/DEPLOYMENT.md) — GitHub repo → Vercel + Render + GPU tier
+- [Deployment setup](docs/DEPLOY_SETUP.md) — **start here** for Audira.run on Vercel + Render
+- [Deployment guide](docs/DEPLOYMENT_GUIDE.md) — full platform reference
 - [TRIBE v2 setup](docs/TRIBE_V2.md) — [facebook/tribev2](https://huggingface.co/facebook/tribev2) on Hugging Face
 - [Team & hand-offs](docs/TEAM.md)
 - [Build order](docs/BUILD_ORDER.md)
@@ -73,4 +74,4 @@ npm run test:web
 
 ## Status
 
-**Paused after Phase 0.** Next story: **TCA-067** (Enterprise SSO & RBAC) — awaiting go-ahead.
+Phase 1 analysis platform shipped. See [progress ledger](docs/ledger/PROGRESS_LEDGER.md) and [build order](docs/BUILD_ORDER.md).

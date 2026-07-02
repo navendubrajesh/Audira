@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  transpilePackages: ["@resonode/design-tokens"],
+  transpilePackages: ["@audira/design-tokens"],
 };
 
 export default nextConfig;

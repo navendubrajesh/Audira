@@ -1,6 +1,6 @@
 # Technology Baseline — Standing Decision (Never Re-litigate)
 
-**Product:** Resonode — Enterprise Communications Neuro-Analyzer  
+**Product:** Audira.run — Enterprise Communications Neuro-Analyzer  
 **Decided:** Phase 0 bootstrap  
 **Supersedes:** Any Android/Kotlin template references in generic delivery playbooks. The backlog v1.1 bakes the web stack into acceptance criteria.
 
@@ -40,7 +40,7 @@
 ## Module structure (monorepo)
 
 ```
-resonode/
+audira/
 ├── apps/web/              # Communications Studio (Next.js)
 ├── apps/addins/           # Office.js add-ins (Phase 1+)
 ├── services/api/          # FastAPI orchestration

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Parse Resonode competitive backlog Excel and compute build order."""
+"""Parse Audira.run competitive backlog Excel and compute build order."""
 
 from __future__ import annotations
 
@@ -130,7 +130,7 @@ def topological_sort(stories: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
 def render_build_order_md(stories: list[dict[str, Any]], source: Path) -> str:
     lines = [
-        "# Resonode — Computed Build Order",
+        "# Audira.run — Computed Build Order",
         "",
         f"**Source:** `{source.name}`  ",
         f"**Stories:** {len(stories)}  ",
@@ -180,7 +180,7 @@ def parse_backlog(xlsx_path: Path) -> list[dict[str, Any]]:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Parse Resonode backlog Excel")
+    parser = argparse.ArgumentParser(description="Parse Audira.run backlog Excel")
     parser.add_argument("--input", type=Path, default=DEFAULT_XLSX)
     parser.add_argument("--json", type=Path, default=OUTPUT_JSON)
     parser.add_argument("--order-md", type=Path, default=OUTPUT_ORDER)

@@ -159,6 +159,39 @@ async def publish_standard(
     return {"id": str(rule.id), "status": rule.status, "version": rule.version}
 
 
+@router.post("/standards/{rule_id}/rollback")
+async def rollback_standard(
+    rule_id: UUID,
+    principal: Annotated[Principal, Depends(require_permission("standards.manage"))],
+    db: Annotated[AsyncSession, Depends(get_db)],
+):
+    """TCA-005 — revert published rule to draft."""
+    rule = await db.get(StandardsRule, rule_id)
+    if not rule:
+        raise HTTPException(status_code=404, detail="Rule not found")
+    try:
+        assert_tenant_resource(rule.tenant_id, principal.tenant_id)
+    except TenantIsolationError:
+        raise HTTPException(status_code=404, detail="Rule not found") from None
+    rule.status = "draft"
+    await db.commit()
+    return {"id": str(rule.id), "status": rule.status}
+
+
+@router.get("/quality-gates")
+async def get_quality_gates(
+    principal: Annotated[Principal, Depends(get_current_user)],
+):
+    """TCA-052 — org quality thresholds."""
+    from app.services.scoring.composite import NEEDS_WORK_THRESHOLD, PASS_THRESHOLD
+
+    return {
+        "pass_threshold": PASS_THRESHOLD,
+        "needs_work_threshold": NEEDS_WORK_THRESHOLD,
+        "tenant_id": str(principal.tenant_id),
+    }
+
+
 @router.get("/brand")
 async def get_brand(
     principal: Annotated[Principal, Depends(get_current_user)],

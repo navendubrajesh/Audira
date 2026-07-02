@@ -1,5 +1,5 @@
 {
-  "name": "@resonode/web",
+  "name": "@audira/web",
   "version": "0.0.0-phase0",
   "private": true,
   "scripts": {
@@ -10,7 +10,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@resonode/design-tokens": "*",
+    "@audira/design-tokens": "*",
     "@tanstack/react-query": "^5.62.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

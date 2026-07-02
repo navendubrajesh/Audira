@@ -1,6 +1,6 @@
 """Inference cost estimation and cap checks."""
 
-from resonode_core.inference.types import Modality
+from audira_core.inference.types import Modality
 
 # Pilot pricing estimates (USD) — replaced by provider-reported cost in production
 ESTIMATED_COST_USD: dict[Modality, float] = {

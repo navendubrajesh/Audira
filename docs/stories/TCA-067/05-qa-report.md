@@ -37,4 +37,4 @@ npm run build:web — success
 ## Notes
 
 - Production requires `WORKOS_API_KEY`, `WORKOS_CLIENT_ID`, `WORKOS_WEBHOOK_SECRET`, and strong `JWT_SECRET`.
-- SCIM group mapping is initial (`resonode-admin`, etc.) — tenant-configurable mapping deferred to TCA-074.
+- SCIM group mapping is initial (`audira-admin`, etc.) — tenant-configurable mapping deferred to TCA-074.

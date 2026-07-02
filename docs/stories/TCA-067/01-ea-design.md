@@ -8,7 +8,7 @@
 
 | AC | Implementation |
 |---|---|
-| SAML/OIDC SSO via WorkOS | API `/auth/login` → WorkOS AuthKit → `/auth/callback` → Resonode session JWT |
+| SAML/OIDC SSO via WorkOS | API `/auth/login` → WorkOS AuthKit → `/auth/callback` → Audira.run session JWT |
 | SCIM provisioning | `POST /webhooks/workos/directory` — Directory Sync events (create/update/delete users) |
 | Granular roles | 11 PRD roles in `app/auth/roles.py`; `require_roles()` / `require_permission()` deps |
 | Access audited | Append-only `audit_logs` table; events on login, logout, denied, SCIM |
@@ -45,9 +45,9 @@
 | POST | `/webhooks/workos/directory` | WorkOS signature | SCIM directory sync events |
 | GET | `/admin/audit` | Admin/Security | Paginated access audit log |
 
-## Session JWT (Resonode-issued)
+## Session JWT (Audira.run-issued)
 
-Claims: `sub`, `email`, `tenant_id`, `roles[]`, `exp`, `iss=resonode`
+Claims: `sub`, `email`, `tenant_id`, `roles[]`, `exp`, `iss=audira`
 
 Signed with `JWT_SECRET`. WorkOS identity stored on `users.workos_user_id`.
 

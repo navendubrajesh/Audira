@@ -1,1 +1,1 @@
-"""Resonode API package."""
+"""Audira.run API package."""

@@ -1,5 +1,5 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
-const SESSION_COOKIE = "resonode_session";
+const SESSION_COOKIE = "audira_session";
 
 export type SessionUser = {
   user_id: string;

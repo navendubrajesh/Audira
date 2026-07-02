@@ -31,6 +31,7 @@ Thumbs.db
 
 # Docker
 postgres_data/
+services/api/uploads/
 
 # Logs
 *.log

@@ -29,8 +29,8 @@ SHARED = Path(__file__).resolve().parents[3] / "shared"
 if str(SHARED) not in sys.path:
     sys.path.insert(0, str(SHARED))
 
-from resonode_core.inference.types import Modality
-from resonode_core.sla import sla_target_ms
+from audira_core.inference.types import Modality
+from audira_core.sla import sla_target_ms
 
 router = APIRouter(prefix="/inference", tags=["inference"])
 

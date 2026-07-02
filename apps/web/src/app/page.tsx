@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { cookies } from "next/headers";
-import { productName, productTagline } from "@resonode/design-tokens";
+import { productName, productTagline } from "@audira/design-tokens";
 
 import { AppHeader } from "@/components/app-header";
 import { InferencePanel } from "@/components/inference/inference-panel";
@@ -13,7 +13,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 async function getServerUser(): Promise<SessionUser | null> {
   const cookieStore = await cookies();
-  const token = cookieStore.get("resonode_session")?.value;
+  const token = cookieStore.get("audira_session")?.value;
   if (!token) return null;
 
   try {

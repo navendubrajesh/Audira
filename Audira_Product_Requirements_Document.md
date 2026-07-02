@@ -1,6 +1,6 @@
 # Product Requirements Document — Enterprise Communications Neuro‑Analyzer
 
-**Working product name:** *Resonode* (provisional — confirm after trademark/domain clearance)
+**Working product name:** *Audira.run* (provisional — confirm after trademark/domain clearance)
 **Document type:** Consolidated Product Requirements Document (PRD) / build specification
 **Prepared by:** [Big Four] Strategy Advisory, for [Startup Client]
 **Intended consumer:** Development partner (AI‑native delivery on BMAD + Spec‑Kit)
@@ -24,7 +24,7 @@ This PRD is written to be consumed directly by a spec‑driven, AI‑assisted de
 
 | Field | Value |
 |---|---|
-| Product (working) | Resonode — Enterprise Communications Neuro‑Analyzer |
+| Product (working) | Audira.run — Enterprise Communications Neuro‑Analyzer |
 | Owner | [Client product owner] |
 | Delivery model | AI‑native (BMAD method + Spec‑Kit), partner‑built |
 | Core engine | Open models, **TRIBE v2 primary**, others where better‑fit. **No in‑house model training.** |
@@ -35,9 +35,9 @@ This PRD is written to be consumed directly by a spec‑driven, AI‑assisted de
 
 ## 2. Executive summary
 
-Resonode is an **analyser**: enterprise communications teams submit a communication artifact — an official communication, presentation, press release, internal communication, executive communication, training material, policy or similar collateral — and Resonode predicts **how the intended audience will respond** to it (attention, emotional response, comprehension, memorability, brand fit), highlights the weak parts, and recommends fixes, **before** the artifact is published or sent.
+Audira.run is an **analyser**: enterprise communications teams submit a communication artifact — an official communication, presentation, press release, internal communication, executive communication, training material, policy or similar collateral — and Audira.run predicts **how the intended audience will respond** to it (attention, emotional response, comprehension, memorability, brand fit), highlights the weak parts, and recommends fixes, **before** the artifact is published or sent.
 
-The product does this by **orchestrating existing open models** (primarily Meta FAIR's TRIBE v2, a tri‑modal model that predicts human brain/behavioural response to media) and mapping their raw output into actionable communication metrics. Resonode does **not** train its own foundation model. Its defensible value is the application layer: artifact rendering, the raw‑output‑to‑comms‑metric mapping and calibration, the enterprise workflow, and the governance/compliance/security envelope that consumer ad‑tech tools lack.
+The product does this by **orchestrating existing open models** (primarily Meta FAIR's TRIBE v2, a tri‑modal model that predicts human brain/behavioural response to media) and mapping their raw output into actionable communication metrics. Audira.run does **not** train its own foundation model. Its defensible value is the application layer: artifact rendering, the raw‑output‑to‑comms‑metric mapping and calibration, the enterprise workflow, and the governance/compliance/security envelope that consumer ad‑tech tools lack.
 
 **Engineering artifacts (source code, configs, architecture/design docs) are explicitly out of scope.**
 
@@ -67,7 +67,7 @@ The product does this by **orchestrating existing open models** (primarily Meta 
 
 - **TRIBE v2** is Meta FAIR's tri‑modal (video + audio + language) foundation model that predicts group‑average human brain (fMRI) responses to stimuli. It is the conceptual engine: render an artifact, run inference, obtain audience‑response signals — no human panels.
 - **Licensing reality (critical constraint):** TRIBE v2 is released under **CC BY‑NC 4.0 (non‑commercial)**. Running production inference on TRIBE v2 inside a sold product is a commercial use. Resolution does not require building a model — see Section 13. The product must remain model‑agnostic so this can be honoured operationally.
-- **Competitive whitespace:** neuro/attention vendors (Neurons, Realeyes, DAIVID, Dragonfly) predict well but are built for ads/consumer creative; enterprise content‑governance vendors (Acrolinx/Markup AI, Writer, VisibleThread) own the enterprise/compliance relationship but have no neuro‑prediction. Resonode targets the gap: neuro‑grounded analysis purpose‑built for internal/exec/policy comms with governance and compliance.
+- **Competitive whitespace:** neuro/attention vendors (Neurons, Realeyes, DAIVID, Dragonfly) predict well but are built for ads/consumer creative; enterprise content‑governance vendors (Acrolinx/Markup AI, Writer, VisibleThread) own the enterprise/compliance relationship but have no neuro‑prediction. Audira.run targets the gap: neuro‑grounded analysis purpose‑built for internal/exec/policy comms with governance and compliance.
 
 ---
 
@@ -82,8 +82,8 @@ The product does this by **orchestrating existing open models** (primarily Meta 
 
 ### 5.2 Out of scope
 - **Engineering artifacts** — source code, configuration, infrastructure/architecture and design documents. The platform must detect and exclude these.
-- **Training or fine‑tuning a foundation model in‑house.** Resonode consumes open/commercial models only.
-- Outbound distribution/sending of communications (Resonode analyses and advises; it does not send). Integration with sending tools is read/advise only.
+- **Training or fine‑tuning a foundation model in‑house.** Audira.run consumes open/commercial models only.
+- Outbound distribution/sending of communications (Audira.run analyses and advises; it does not send). Integration with sending tools is read/advise only.
 - Real‑time biometric capture of individuals (no webcam/eye‑tracking of the client's own staff); predictions are model‑based.
 
 ---
@@ -116,7 +116,7 @@ The product does this by **orchestrating existing open models** (primarily Meta 
 
 ## 8. Architecture overview (reference)
 
-Resonode is layered so the model is replaceable and the value sits in the surrounding layers.
+Audira.run is layered so the model is replaceable and the value sits in the surrounding layers.
 
 ```
 ┌──────────────────────────────────────────────────────────────────────┐
@@ -327,7 +327,7 @@ Resonode is layered so the model is replaceable and the value sits in the surrou
 
 ## 13. Model & licensing requirements
 
-1. **No in‑house foundation‑model training.** Resonode consumes open/commercial models only.
+1. **No in‑house foundation‑model training.** Audira.run consumes open/commercial models only.
 2. **Model‑agnostic abstraction (FR‑E03‑2)** is mandatory and is the enabler for the licensing strategy.
 3. **TRIBE v2 licence (CC BY‑NC 4.0):** production inference on TRIBE v2 is permitted **only** under (a) a commercial licence obtained from Meta, **or** (b) a configuration where TRIBE v2 is used for internal R&D/evaluation only and production inference is routed to a commercially‑usable model. **The build must support both without code change** (config‑switchable model routing).
 4. **Licence register (NFR‑14):** maintain a register of every model, its version and licence terms; CI gate blocks deploying a model whose licence does not permit the intended use.

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { productName, productTagline } from "@resonode/design-tokens";
+import { productName, productTagline } from "@audira/design-tokens";
 
 import { Providers } from "@/components/providers";
 import "./globals.css";

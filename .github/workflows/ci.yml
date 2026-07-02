@@ -25,6 +25,9 @@ jobs:
       - name: Pytest
         run: pytest services/api/tests -q
 
+      - name: Model licence gate (production check script)
+        run: python scripts/check_model_licence.py
+
   web:
     runs-on: ubuntu-latest
     steps:

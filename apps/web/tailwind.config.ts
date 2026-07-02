@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss";
-import { colors, typography, radii } from "@resonode/design-tokens";
+import { colors, typography, radii } from "@audira/design-tokens";
 
 const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],

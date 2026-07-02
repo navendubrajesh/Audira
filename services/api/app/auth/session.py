@@ -1,4 +1,4 @@
-"""Resonode session JWT issue and verify."""
+"""Audira.run session JWT issue and verify."""
 
 from datetime import UTC, datetime, timedelta
 from uuid import UUID
@@ -18,7 +18,7 @@ class TokenPayload(BaseModel):
     roles: list[str]
     workos_user_id: str | None = None
     exp: int
-    iss: str = "resonode"
+    iss: str = "audira"
 
 
 def create_session_token(
@@ -37,13 +37,13 @@ def create_session_token(
         "workos_user_id": workos_user_id,
         "iat": int(now.timestamp()),
         "exp": int((now + timedelta(hours=settings.jwt_expiry_hours)).timestamp()),
-        "iss": "resonode",
+        "iss": "audira",
     }
     return jwt.encode(payload, settings.jwt_secret, algorithm="HS256")
 
 
 def decode_session_token(token: str) -> Principal:
-    payload = jwt.decode(token, settings.jwt_secret, algorithms=["HS256"], issuer="resonode")
+    payload = jwt.decode(token, settings.jwt_secret, algorithms=["HS256"], issuer="audira")
     data = TokenPayload.model_validate(payload)
     return Principal(
         user_id=UUID(data.sub),

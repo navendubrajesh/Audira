@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TCA-048 — Word add-in manifest (side-load for dev) -->
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:type="TaskPaneApp">
+  <Id>00000000-0000-0000-0000-000000000048</Id>
+  <Version>1.0.0</Version>
+  <ProviderName>Audira.run</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="Audira.run Comms Analyzer"/>
+  <Description DefaultValue="Inline communications effectiveness scoring"/>
+  <Hosts>
+    <Host Name="Document"/>
+    <Host Name="Presentation"/>
+  </Hosts>
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://YOUR_VERCEL_URL/analyze"/>
+  </DefaultSettings>
+  <Permissions>ReadWriteDocument</Permissions>
+</OfficeApp>

@@ -1,4 +1,4 @@
-# Resonode API
+# Audira.run API
 FROM python:3.12-slim AS base
 
 WORKDIR /app

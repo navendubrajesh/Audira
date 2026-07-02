@@ -1,4 +1,4 @@
-# Resonode background worker (Arq)
+# Audira.run background worker (Arq)
 FROM python:3.12-slim
 
 WORKDIR /app

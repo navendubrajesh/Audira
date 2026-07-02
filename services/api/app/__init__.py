@@ -1,3 +1,3 @@
-"""Resonode API — FastAPI orchestration tier."""
+"""Audira.run API — FastAPI orchestration tier."""
 
 __version__ = "0.0.0-phase0"

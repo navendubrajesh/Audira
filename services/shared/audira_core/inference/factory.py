@@ -1,6 +1,6 @@
 """Provider factory — routes model_id to the correct inference backend."""
 
-from resonode_core.inference.provider import HttpGpuProvider, MockGpuProvider
+from audira_core.inference.provider import HttpGpuProvider, MockGpuProvider
 
 TRIBE_V2_MODEL_IDS = {"tribe-v2", "facebook/tribev2", "tribe-v2-stub"}
 

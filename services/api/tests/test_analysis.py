@@ -64,7 +64,7 @@ async def test_mapping_module():
     shared = Path(__file__).resolve().parents[2] / "shared"
     if str(shared) not in sys.path:
         sys.path.insert(0, str(shared))
-    from resonode_core.mapping.metrics import map_tribe_output
+    from audira_core.mapping.metrics import map_tribe_output
 
     out = map_tribe_output(
         {"metrics_stub": {"attention": 80, "clarity": 75}, "model_id": "tribe-v2-stub"},

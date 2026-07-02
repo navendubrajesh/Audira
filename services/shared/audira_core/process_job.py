@@ -6,9 +6,9 @@ from datetime import UTC, datetime
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from resonode_core.inference.factory import build_provider
-from resonode_core.inference.types import InferenceRequest, Modality
-from resonode_core.sla import check_sla
+from audira_core.inference.factory import build_provider
+from audira_core.inference.types import InferenceRequest, Modality
+from audira_core.sla import check_sla
 
 
 async def refresh_batch_counts(session: AsyncSession, batch_model, job_model, batch_id: uuid.UUID) -> None:

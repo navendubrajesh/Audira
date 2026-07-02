@@ -29,7 +29,7 @@ def _get_model():
 
 
 def _write_temp_text(text: str) -> str:
-    fd, path = tempfile.mkstemp(suffix=".txt", prefix="resonode_tribe_")
+    fd, path = tempfile.mkstemp(suffix=".txt", prefix="audira_tribe_")
     with os.fdopen(fd, "w", encoding="utf-8") as f:
         f.write(text)
     return path

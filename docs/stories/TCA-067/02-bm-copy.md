@@ -4,7 +4,7 @@
 
 | Key | Copy |
 |---|---|
-| `login.title` | Sign in to Resonode |
+| `login.title` | Sign in to Audira.run |
 | `login.subtitle` | Enterprise SSO for your organisation |
 | `login.button` | Continue with SSO |
 | `login.dev_notice` | Development mode — use configured test credentials |
@@ -50,7 +50,7 @@
 
 ## Compliance note (UI footer on login)
 
-Resonode uses your organisation's identity provider. We do not store your SSO password. Access is logged for security and compliance purposes.
+Audira.run uses your organisation's identity provider. We do not store your SSO password. Access is logged for security and compliance purposes.
 
 ## Hand-off → UXD
 

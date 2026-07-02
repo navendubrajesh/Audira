@@ -11,7 +11,11 @@ _DEFAULT_FLAGS = {
 }
 
 
-def score_inclusive_language(text: str, custom_rules: list[dict] | None = None) -> dict:
+def score_inclusive_language(
+    text: str,
+    custom_rules: list[dict] | None = None,
+    region: str | None = None,
+) -> dict:
     lower = text.lower()
     flags: list[dict] = []
 
@@ -28,6 +32,12 @@ def score_inclusive_language(text: str, custom_rules: list[dict] | None = None) 
                     "suggestion": rule.get("replacement") or rule.get("metadata", {}).get("note", ""),
                 }
             )
+
+    if region and region.upper() in {"EU", "UK"}:
+        extra = {"chairman": "Use chair or chairperson."}
+        for term, suggestion in extra.items():
+            if term in lower and not any(f["term"] == term for f in flags):
+                flags.append({"term": term, "suggestion": suggestion, "region": region})
 
     penalty = min(40, len(flags) * 8)
     score = max(0.0, 100.0 - penalty)

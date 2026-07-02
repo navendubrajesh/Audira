@@ -1,5 +1,5 @@
 /**
- * Resonode design tokens — BM+UXD standing baseline (Phase 0).
+ * Audira.run design tokens — BM+UXD standing baseline (Phase 0).
  * Brand palette: professional, trust-forward, neuro-analytics accent.
  */
 
@@ -58,6 +58,6 @@ export const radii = {
   xl: "1rem",
 } as const;
 
-export const productName = "Resonode";
+export const productName = "Audira.run";
 export const productTagline =
   "Pre-send neuro-grounded analysis for enterprise communications";

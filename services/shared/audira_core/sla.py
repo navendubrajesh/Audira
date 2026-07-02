@@ -1,6 +1,6 @@
 """SLA targets per NFR-01."""
 
-from resonode_core.inference.types import Modality
+from audira_core.inference.types import Modality
 
 SLA_TARGETS_MS: dict[Modality, int] = {
     Modality.TEXT: 2_000,

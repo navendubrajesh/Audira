@@ -1,4 +1,4 @@
-"""TRIBE v2 GPU inference HTTP service — decoupled tier for Resonode."""
+"""TRIBE v2 GPU inference HTTP service — decoupled tier for Audira.run."""
 
 import os
 
@@ -6,7 +6,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
 app = FastAPI(
-    title="Resonode TRIBE v2 Inference",
+    title="Audira.run TRIBE v2 Inference",
     description="GPU service wrapping facebook/tribev2 — https://huggingface.co/facebook/tribev2",
     version="0.1.0",
 )

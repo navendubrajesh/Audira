@@ -5,6 +5,6 @@ Phase 1 stories:
 - **TCA-048** — Word & PowerPoint add-ins (Must)
 - **TCA-049** — Outlook & Teams pre-send (Phase 2)
 
-Each add-in will be a lightweight React app using Office.js, hostable on Vercel, sharing `@resonode/design-tokens`.
+Each add-in will be a lightweight React app using Office.js, hostable on Vercel, sharing `@audira/design-tokens`.
 
 Scaffold per add-in when the story is selected.

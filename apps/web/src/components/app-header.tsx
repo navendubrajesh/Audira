@@ -8,7 +8,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 async function getServerUser(): Promise<SessionUser | null> {
   const cookieStore = await cookies();
-  const token = cookieStore.get("resonode_session")?.value;
+  const token = cookieStore.get("audira_session")?.value;
   if (!token) return null;
 
   try {
@@ -31,9 +31,9 @@ export async function AppHeader() {
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
         <div className="flex items-center gap-3">
           <div className="flex h-8 w-8 items-center justify-center rounded-md bg-brand-600 text-sm font-bold text-white">
-            R
+            A
           </div>
-          <span className="font-semibold text-neutral-900">Resonode</span>
+          <span className="font-semibold text-neutral-900">Audira.run</span>
           {user ? (
             <nav className="ml-6 flex gap-4 text-sm text-neutral-600">
               <Link href="/" className="hover:text-brand-600">

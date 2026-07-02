@@ -52,13 +52,13 @@ DEFAULT_ARTIFACT_TYPES = [
     {
         "code": "email",
         "label": "Email / memo",
-        "checks": ["readability", "tone", "brand", "inclusive"],
+        "checks": ["readability", "tone", "brand", "inclusive", "structure"],
         "block_engineering": False,
     },
     {
         "code": "intranet",
         "label": "Intranet article",
-        "checks": ["readability", "jargon", "inclusive", "engagement"],
+        "checks": ["readability", "jargon", "inclusive", "engagement", "structure"],
         "block_engineering": False,
     },
     {

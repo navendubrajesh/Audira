@@ -7,7 +7,7 @@ import { devLogin, getLoginUrl, setSessionToken } from "@/lib/auth";
 
 export function LoginCard({ devMode }: { devMode?: boolean }) {
   const router = useRouter();
-  const [email, setEmail] = useState("admin@resonode.dev");
+  const [email, setEmail] = useState("admin@audira.run");
   const [role, setRole] = useState("admin");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -32,10 +32,10 @@ export function LoginCard({ devMode }: { devMode?: boolean }) {
     <div className="w-full max-w-md rounded-xl border border-neutral-200 bg-white p-8 shadow-sm">
       <div className="mb-6 flex items-center gap-3">
         <div className="flex h-10 w-10 items-center justify-center rounded-md bg-brand-600 text-lg font-bold text-white">
-          R
+          A
         </div>
         <div>
-          <h1 className="text-xl font-bold text-neutral-900">Sign in to Resonode</h1>
+          <h1 className="text-xl font-bold text-neutral-900">Sign in to Audira.run</h1>
           <p className="text-sm text-neutral-500">Enterprise SSO for your organisation</p>
         </div>
       </div>
@@ -87,7 +87,7 @@ export function LoginCard({ devMode }: { devMode?: boolean }) {
       )}
 
       <p className="mt-6 text-xs text-neutral-500">
-        Resonode uses your organisation&apos;s identity provider. We do not store your SSO
+        Audira.run uses your organisation&apos;s identity provider. We do not store your SSO
         password. Access is logged for security and compliance purposes.
       </p>
     </div>

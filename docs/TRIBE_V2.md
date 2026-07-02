@@ -18,7 +18,7 @@ df = model.get_events_dataframe(video_path="path/to/video.mp4")
 preds, segments = model.predict(events=df)
 ```
 
-## Where it runs in Resonode
+## Where it runs in Audira.run
 
 TRIBE v2 **never** runs inside Vercel or Render API containers. It runs in:
 

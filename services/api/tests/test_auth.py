@@ -55,7 +55,7 @@ async def test_scim_webhook_provisions_user(client: AsyncClient) -> None:
             "id": "directory_user_01",
             "email": "scim@test.com",
             "state": "active",
-            "groups": [{"name": "resonode-admin"}],
+            "groups": [{"name": "audira-admin"}],
         },
     }
     response = await client.post("/webhooks/workos/directory", json=payload)

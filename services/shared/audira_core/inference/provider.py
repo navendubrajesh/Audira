@@ -2,7 +2,7 @@
 
 from typing import Protocol
 
-from resonode_core.inference.types import InferenceRequest, InferenceResult
+from audira_core.inference.types import InferenceRequest, InferenceResult
 
 
 class InferenceProvider(Protocol):
@@ -23,8 +23,8 @@ class MockGpuProvider:
         import asyncio
         import time
 
-        from resonode_core.cost import estimate_cost
-        from resonode_core.inference.types import Modality
+        from audira_core.cost import estimate_cost
+        from audira_core.inference.types import Modality
 
         delay = 0.05 if request.modality == Modality.TEXT else 0.2
         await asyncio.sleep(delay)
@@ -63,7 +63,7 @@ class HttpGpuProvider:
 
         import httpx
 
-        from resonode_core.cost import estimate_cost
+        from audira_core.cost import estimate_cost
 
         headers = {"Authorization": f"Bearer {self.api_key}"} if self.api_key else {}
         started = time.perf_counter()

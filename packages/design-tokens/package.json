@@ -1,5 +1,5 @@
 {
-  "name": "@resonode/design-tokens",
+  "name": "@audira/design-tokens",
   "version": "0.0.0-phase0",
   "private": true,
   "main": "./src/index.ts",
