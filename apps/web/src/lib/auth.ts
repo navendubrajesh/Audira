@@ -63,18 +63,23 @@ export async function logout(): Promise<void> {
   clearSession();
 }
 
-export const OAUTH_PROVIDERS = [
-  { id: "GoogleOAuth", label: "Google" },
-  { id: "AppleOAuth", label: "Apple" },
-  { id: "GitHubOAuth", label: "GitHub" },
-  { id: "LinkedInOAuth", label: "LinkedIn" },
-] as const;
+export type OAuthProviderId = "google" | "apple" | "github" | "linkedin";
 
-export type OAuthProviderId = (typeof OAUTH_PROVIDERS)[number]["id"];
+export type OAuthProvider = { id: OAuthProviderId; label: string };
 
 export function getLoginUrl(provider?: OAuthProviderId): string {
   const params = new URLSearchParams();
   if (provider) params.set("provider", provider);
   const query = params.toString();
   return `${API_URL}/auth/login${query ? `?${query}` : ""}`;
+}
+
+export async function getEnabledProviders(): Promise<OAuthProvider[]> {
+  try {
+    const response = await fetch(`${API_URL}/auth/providers`, { cache: "no-store" });
+    if (!response.ok) return [];
+    return (await response.json()) as OAuthProvider[];
+  } catch {
+    return [];
+  }
 }

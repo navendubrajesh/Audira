@@ -64,9 +64,34 @@ async def test_scim_webhook_provisions_user(client: AsyncClient) -> None:
 
 @pytest.mark.asyncio
 async def test_oauth_login_rejects_unknown_provider(client: AsyncClient) -> None:
-    response = await client.get("/auth/login", params={"provider": "TwitterOAuth"}, follow_redirects=False)
+    response = await client.get("/auth/login", params={"provider": "twitter"}, follow_redirects=False)
     assert response.status_code == 400
     assert "Unsupported provider" in response.json()["detail"]
+
+
+@pytest.mark.asyncio
+async def test_providers_endpoint_lists_configured(client: AsyncClient) -> None:
+    # No provider credentials in the test environment → empty list.
+    response = await client.get("/auth/providers")
+    assert response.status_code == 200
+    assert response.json() == []
+
+
+@pytest.mark.asyncio
+async def test_oauth_login_builds_provider_redirect(client: AsyncClient, monkeypatch) -> None:
+    from app.auth import oauth
+
+    monkeypatch.setattr(oauth.settings, "google_client_id", "test-client")
+    monkeypatch.setattr(oauth.settings, "google_client_secret", "test-secret")
+
+    response = await client.get(
+        "/auth/login", params={"provider": "google"}, follow_redirects=False
+    )
+    assert response.status_code in (302, 307)
+    location = response.headers["location"]
+    assert location.startswith("https://accounts.google.com/o/oauth2/v2/auth")
+    assert "client_id=test-client" in location
+    assert "state=" in location
 
 
 @pytest.mark.asyncio

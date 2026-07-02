@@ -10,6 +10,7 @@ arq>=0.26.0
 httpx>=0.28.0
 python-multipart>=0.0.17
 PyJWT>=2.10.0
+cryptography>=44.0.0  # ES256 signing for Sign in with Apple client secret
 openpyxl>=3.1.5
 pandas>=2.2.0
 # Document parsing (TCA-007) — optional at runtime, required in production
