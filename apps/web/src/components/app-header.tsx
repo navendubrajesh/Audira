@@ -42,6 +42,9 @@ export async function AppHeader() {
               <Link href="/analyze" className="hover:text-brand-600">
                 Analyze
               </Link>
+              <Link href="/analytics" className="hover:text-brand-600">
+                Analytics
+              </Link>
             </nav>
           ) : null}
         </div>

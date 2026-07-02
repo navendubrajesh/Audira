@@ -45,6 +45,7 @@ async def health_detail(
     return {
         "environment": settings.environment,
         "inference_tier_configured": bool(settings.inference_base_url),
+        "huggingface_token_configured": bool(settings.hf_token),
         "otel_endpoint": settings.otel_exporter_otlp_endpoint or None,
         "sentry_configured": bool(settings.sentry_dsn),
         "tenant_id": str(principal.tenant_id),

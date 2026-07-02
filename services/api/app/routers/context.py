@@ -12,6 +12,7 @@ from app.auth.dependencies import get_current_user, require_permission
 from app.auth.principal import Principal
 from app.db.session import get_db
 from app.models.context import ArtifactType, BrandProfile, StandardsRule
+from app.models.governance import TenantQualityGates
 from app.services.seed_defaults import seed_tenant_defaults
 from app.services.tenant_service import assert_tenant_resource, TenantIsolationError
 
@@ -181,15 +182,43 @@ async def rollback_standard(
 @router.get("/quality-gates")
 async def get_quality_gates(
     principal: Annotated[Principal, Depends(get_current_user)],
+    db: Annotated[AsyncSession, Depends(get_db)],
 ):
     """TCA-052 — org quality thresholds."""
-    from app.services.scoring.composite import NEEDS_WORK_THRESHOLD, PASS_THRESHOLD
+    await seed_tenant_defaults(db, principal.tenant_id)
+    gates = await db.get(TenantQualityGates, principal.tenant_id)
+    if not gates:
+        from app.services.scoring.composite import NEEDS_WORK_THRESHOLD, PASS_THRESHOLD
 
+        return {
+            "pass_threshold": PASS_THRESHOLD,
+            "needs_work_threshold": NEEDS_WORK_THRESHOLD,
+            "block_publish_on_fail": False,
+            "tenant_id": str(principal.tenant_id),
+        }
     return {
-        "pass_threshold": PASS_THRESHOLD,
-        "needs_work_threshold": NEEDS_WORK_THRESHOLD,
+        "pass_threshold": gates.pass_threshold,
+        "needs_work_threshold": gates.needs_work_threshold,
+        "block_publish_on_fail": gates.block_publish_on_fail,
         "tenant_id": str(principal.tenant_id),
     }
+
+
+@router.patch("/quality-gates")
+async def update_quality_gates(
+    body: dict,
+    principal: Annotated[Principal, Depends(require_permission("standards.manage"))],
+    db: Annotated[AsyncSession, Depends(get_db)],
+):
+    gates = await db.get(TenantQualityGates, principal.tenant_id)
+    if not gates:
+        gates = TenantQualityGates(tenant_id=principal.tenant_id)
+        db.add(gates)
+    for key in ("pass_threshold", "needs_work_threshold", "block_publish_on_fail"):
+        if key in body:
+            setattr(gates, key, body[key])
+    await db.commit()
+    return await get_quality_gates(principal, db)
 
 
 @router.get("/brand")

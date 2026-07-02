@@ -1,28 +1,53 @@
 """TRIBE v2 GPU inference HTTP service — decoupled tier for Audira.run."""
 
 import os
+from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
-app = FastAPI(
-    title="Audira.run TRIBE v2 Inference",
-    description="GPU service wrapping facebook/tribev2 — https://huggingface.co/facebook/tribev2",
-    version="0.1.0",
-)
+from engine import TRIBE_MODEL_ID
 
 API_KEY = os.environ.get("INFERENCE_API_KEY", "")
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    try:
+        from audira_core.huggingface import ensure_hf_login
+
+        ensure_hf_login()
+    except Exception as exc:
+        # Model load is lazy; startup only primes HF auth when token is present.
+        if os.environ.get("TRIBE_ALLOW_STUB", "0") != "1":
+            print(f"[startup] Hugging Face auth not ready: {exc}")
+    yield
+
+
+app = FastAPI(
+    title="Audira.run TRIBE v2 Inference",
+    description=f"GPU service wrapping {TRIBE_MODEL_ID} — https://huggingface.co/{TRIBE_MODEL_ID}",
+    version="0.1.0",
+    lifespan=lifespan,
+)
 
 
 class InferenceBody(BaseModel):
     modality: str = "text"
     payload: dict = Field(default_factory=dict)
-    model_id: str = "facebook/tribev2"
+    model_id: str = TRIBE_MODEL_ID
 
 
 @app.get("/health")
 async def health():
-    return {"status": "ok", "model": "facebook/tribev2", "tier": "gpu"}
+    from audira_core.huggingface import resolve_hf_token
+
+    return {
+        "status": "ok",
+        "model": TRIBE_MODEL_ID,
+        "tier": "gpu",
+        "huggingface_token_configured": bool(resolve_hf_token()),
+    }
 
 
 @app.post("/v1/inference")

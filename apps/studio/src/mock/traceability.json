@@ -1,0 +1,1317 @@
+[
+  {
+    "id": "TCA-001",
+    "epic": "E01",
+    "epic_name": "E01 Audience, Brand & Objective Context",
+    "verticals": [
+      "home"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder (MVP screen)",
+    "status": "Done",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Audience & persona library"
+  },
+  {
+    "id": "TCA-002",
+    "epic": "E01",
+    "epic_name": "E01 Audience, Brand & Objective Context",
+    "verticals": [
+      "home"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder (MVP screen)",
+    "status": "Done",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Brand voice & messaging codification"
+  },
+  {
+    "id": "TCA-003",
+    "epic": "E01",
+    "epic_name": "E01 Audience, Brand & Objective Context",
+    "verticals": [
+      "home"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder",
+    "status": "Done",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Should",
+    "functionality": "Communication objective tagging"
+  },
+  {
+    "id": "TCA-004",
+    "epic": "E01",
+    "epic_name": "E01 Audience, Brand & Objective Context",
+    "verticals": [
+      "home"
+    ],
+    "screen": "governance/GovernanceModule",
+    "impl": "Placeholder (MVP screen)",
+    "status": "Done",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Artifact taxonomy & engineering exclusion"
+  },
+  {
+    "id": "TCA-005",
+    "epic": "E01",
+    "epic_name": "E01 Audience, Brand & Objective Context",
+    "verticals": [
+      "home"
+    ],
+    "screen": "governance/GovernanceModule",
+    "impl": "Placeholder (MVP screen)",
+    "status": "Done",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Standards & policy library"
+  },
+  {
+    "id": "TCA-006",
+    "epic": "E01",
+    "epic_name": "E01 Audience, Brand & Objective Context",
+    "verticals": [
+      "home"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder",
+    "status": "Partial",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Multi-language audience support"
+  },
+  {
+    "id": "TCA-007",
+    "epic": "E02",
+    "epic_name": "E02 Multimodal Artifact Ingestion",
+    "verticals": [
+      "assets"
+    ],
+    "screen": "assets/AssetLibrary",
+    "impl": "Placeholder (MVP screen)",
+    "status": "Done",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Document & slide upload"
+  },
+  {
+    "id": "TCA-008",
+    "epic": "E02",
+    "epic_name": "E02 Multimodal Artifact Ingestion",
+    "verticals": [
+      "assets"
+    ],
+    "screen": "assets/AssetLibrary",
+    "impl": "Placeholder (MVP screen)",
+    "status": "Done",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Text-only fast lane"
+  },
+  {
+    "id": "TCA-009",
+    "epic": "E02",
+    "epic_name": "E02 Multimodal Artifact Ingestion",
+    "verticals": [
+      "assets"
+    ],
+    "screen": "assets/AssetLibrary",
+    "impl": "Placeholder",
+    "status": "Partial",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Audio & video ingestion"
+  },
+  {
+    "id": "TCA-010",
+    "epic": "E02",
+    "epic_name": "E02 Multimodal Artifact Ingestion",
+    "verticals": [
+      "assets"
+    ],
+    "screen": "assets/AssetLibrary",
+    "impl": "Placeholder",
+    "status": "Partial",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Live URL / intranet & email-HTML capture"
+  },
+  {
+    "id": "TCA-011",
+    "epic": "E02",
+    "epic_name": "E02 Multimodal Artifact Ingestion",
+    "verticals": [
+      "assets"
+    ],
+    "screen": "assets/AssetLibrary",
+    "impl": "Stub (coming soon)",
+    "status": "Partial",
+    "phase": "Phase 3 (Advanced)",
+    "priority": "Could",
+    "functionality": "Presentation-as-experience rendering"
+  },
+  {
+    "id": "TCA-012",
+    "epic": "E02",
+    "epic_name": "E02 Multimodal Artifact Ingestion",
+    "verticals": [
+      "assets"
+    ],
+    "screen": "assets/AssetLibrary",
+    "impl": "Placeholder",
+    "status": "Done",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Engineering-artifact exclusion filter"
+  },
+  {
+    "id": "TCA-013",
+    "epic": "E03",
+    "epic_name": "E03 Model Orchestration & Inference Layer (TRIBE v2 + open models)",
+    "verticals": [
+      "home"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder (MVP screen)",
+    "status": "Partial",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "TRIBE v2 (open model) integration"
+  },
+  {
+    "id": "TCA-014",
+    "epic": "E03",
+    "epic_name": "E03 Model Orchestration & Inference Layer (TRIBE v2 + open models)",
+    "verticals": [
+      "home"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder (MVP screen)",
+    "status": "Done",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Pluggable model-abstraction & routing layer"
+  },
+  {
+    "id": "TCA-015",
+    "epic": "E03",
+    "epic_name": "E03 Model Orchestration & Inference Layer (TRIBE v2 + open models)",
+    "verticals": [
+      "home"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder (MVP screen)",
+    "status": "Done",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Output-to-comms-metric mapping & calibration"
+  },
+  {
+    "id": "TCA-016",
+    "epic": "E03",
+    "epic_name": "E03 Model Orchestration & Inference Layer (TRIBE v2 + open models)",
+    "verticals": [
+      "home"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder (MVP screen)",
+    "status": "Done",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Model selection & licence fit"
+  },
+  {
+    "id": "TCA-017",
+    "epic": "E03",
+    "epic_name": "E03 Model Orchestration & Inference Layer (TRIBE v2 + open models)",
+    "verticals": [
+      "home"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder",
+    "status": "Partial",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Multi-model orchestration & specialised models"
+  },
+  {
+    "id": "TCA-018",
+    "epic": "E03",
+    "epic_name": "E03 Model Orchestration & Inference Layer (TRIBE v2 + open models)",
+    "verticals": [
+      "home"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder",
+    "status": "Partial",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Segment-level granularity"
+  },
+  {
+    "id": "TCA-019",
+    "epic": "E03",
+    "epic_name": "E03 Model Orchestration & Inference Layer (TRIBE v2 + open models)",
+    "verticals": [
+      "home"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder (MVP screen)",
+    "status": "Done",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Model & adapter versioning, reproducibility"
+  },
+  {
+    "id": "TCA-020",
+    "epic": "E04",
+    "epic_name": "E04 Attention & Visual Saliency",
+    "verticals": [
+      "social"
+    ],
+    "screen": "social/VerticalWorkspace",
+    "impl": "Placeholder (MVP screen)",
+    "status": "Partial",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Predicted-attention heatmaps"
+  },
+  {
+    "id": "TCA-021",
+    "epic": "E04",
+    "epic_name": "E04 Attention & Visual Saliency",
+    "verticals": [
+      "social"
+    ],
+    "screen": "social/VerticalWorkspace",
+    "impl": "Placeholder",
+    "status": "Partial",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "First-seconds / above-the-fold analysis"
+  },
+  {
+    "id": "TCA-022",
+    "epic": "E04",
+    "epic_name": "E04 Attention & Visual Saliency",
+    "verticals": [
+      "social"
+    ],
+    "screen": "social/VerticalWorkspace",
+    "impl": "Placeholder",
+    "status": "Partial",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Visual hierarchy & clutter check"
+  },
+  {
+    "id": "TCA-023",
+    "epic": "E05",
+    "epic_name": "E05 Emotional Response & Tone",
+    "verticals": [
+      "linkedin",
+      "social"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder",
+    "status": "Partial",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Emotional response prediction"
+  },
+  {
+    "id": "TCA-024",
+    "epic": "E05",
+    "epic_name": "E05 Emotional Response & Tone",
+    "verticals": [
+      "linkedin",
+      "social"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder",
+    "status": "Done",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Should",
+    "functionality": "Tone-of-voice detection vs target"
+  },
+  {
+    "id": "TCA-025",
+    "epic": "E05",
+    "epic_name": "E05 Emotional Response & Tone",
+    "verticals": [
+      "linkedin",
+      "social"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder",
+    "status": "Partial",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Sensitive-message safe-framing check"
+  },
+  {
+    "id": "TCA-026",
+    "epic": "E05",
+    "epic_name": "E05 Emotional Response & Tone",
+    "verticals": [
+      "linkedin",
+      "social"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Stub (coming soon)",
+    "status": "To Do",
+    "phase": "Phase 3 (Advanced)",
+    "priority": "Could",
+    "functionality": "Executive-presence / delivery read (AV)"
+  },
+  {
+    "id": "TCA-027",
+    "epic": "E06",
+    "epic_name": "E06 Comprehension, Clarity & Cognitive Load",
+    "verticals": [
+      "blog",
+      "linkedin",
+      "placement",
+      "social"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder (MVP screen)",
+    "status": "Done",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Readability & plain-language scoring"
+  },
+  {
+    "id": "TCA-028",
+    "epic": "E06",
+    "epic_name": "E06 Comprehension, Clarity & Cognitive Load",
+    "verticals": [
+      "blog",
+      "linkedin",
+      "placement",
+      "social"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder",
+    "status": "Partial",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Cognitive-load / comprehension prediction"
+  },
+  {
+    "id": "TCA-029",
+    "epic": "E06",
+    "epic_name": "E06 Comprehension, Clarity & Cognitive Load",
+    "verticals": [
+      "blog",
+      "linkedin",
+      "placement",
+      "social"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder (MVP screen)",
+    "status": "Done",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Jargon, acronym & terminology check"
+  },
+  {
+    "id": "TCA-030",
+    "epic": "E06",
+    "epic_name": "E06 Comprehension, Clarity & Cognitive Load",
+    "verticals": [
+      "blog",
+      "linkedin",
+      "placement",
+      "social"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder",
+    "status": "Partial",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Key-message clarity & findability"
+  },
+  {
+    "id": "TCA-031",
+    "epic": "E06",
+    "epic_name": "E06 Comprehension, Clarity & Cognitive Load",
+    "verticals": [
+      "blog",
+      "linkedin",
+      "placement",
+      "social"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder",
+    "status": "Done",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Should",
+    "functionality": "Structure & scannability check"
+  },
+  {
+    "id": "TCA-032",
+    "epic": "E07",
+    "epic_name": "E07 Memorability & Message Retention",
+    "verticals": [
+      "blog",
+      "linkedin",
+      "placement",
+      "social"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder",
+    "status": "Partial",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Memorability / recall prediction"
+  },
+  {
+    "id": "TCA-033",
+    "epic": "E07",
+    "epic_name": "E07 Memorability & Message Retention",
+    "verticals": [
+      "blog",
+      "linkedin",
+      "placement",
+      "social"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Stub (coming soon)",
+    "status": "To Do",
+    "phase": "Phase 3 (Advanced)",
+    "priority": "Could",
+    "functionality": "Message-salience map"
+  },
+  {
+    "id": "TCA-034",
+    "epic": "E08",
+    "epic_name": "E08 Brand Voice, Tone & Consistency Governance",
+    "verticals": [
+      "governance"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder (MVP screen)",
+    "status": "Done",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Brand-alignment scoring"
+  },
+  {
+    "id": "TCA-035",
+    "epic": "E08",
+    "epic_name": "E08 Brand Voice, Tone & Consistency Governance",
+    "verticals": [
+      "governance"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder",
+    "status": "Partial",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Terminology & messaging consistency"
+  },
+  {
+    "id": "TCA-036",
+    "epic": "E08",
+    "epic_name": "E08 Brand Voice, Tone & Consistency Governance",
+    "verticals": [
+      "governance"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder",
+    "status": "Partial",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "In-tool real-time guidance"
+  },
+  {
+    "id": "TCA-037",
+    "epic": "E08",
+    "epic_name": "E08 Brand Voice, Tone & Consistency Governance",
+    "verticals": [
+      "governance"
+    ],
+    "screen": "governance/GovernanceModule",
+    "impl": "Placeholder",
+    "status": "Partial",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Generative-AI content governance"
+  },
+  {
+    "id": "TCA-038",
+    "epic": "E09",
+    "epic_name": "E09 Effectiveness Scoring & Benchmarking",
+    "verticals": [
+      "analytics"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder (MVP screen)",
+    "status": "Done",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Composite communication-effectiveness score"
+  },
+  {
+    "id": "TCA-039",
+    "epic": "E09",
+    "epic_name": "E09 Effectiveness Scoring & Benchmarking",
+    "verticals": [
+      "analytics"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder",
+    "status": "Partial",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Internal benchmarks & norms"
+  },
+  {
+    "id": "TCA-040",
+    "epic": "E09",
+    "epic_name": "E09 Effectiveness Scoring & Benchmarking",
+    "verticals": [
+      "analytics"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder",
+    "status": "Done",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Variant A/B comparison"
+  },
+  {
+    "id": "TCA-041",
+    "epic": "E09",
+    "epic_name": "E09 Effectiveness Scoring & Benchmarking",
+    "verticals": [
+      "analytics"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Stub (coming soon)",
+    "status": "To Do",
+    "phase": "Phase 3 (Advanced)",
+    "priority": "Could",
+    "functionality": "Competitive comms benchmarking"
+  },
+  {
+    "id": "TCA-042",
+    "epic": "E10",
+    "epic_name": "E10 Generative Recommendations & Rewrite",
+    "verticals": [
+      "home"
+    ],
+    "screen": "shared/RewriteAssist",
+    "impl": "Placeholder",
+    "status": "Done",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Actionable recommendations"
+  },
+  {
+    "id": "TCA-043",
+    "epic": "E10",
+    "epic_name": "E10 Generative Recommendations & Rewrite",
+    "verticals": [
+      "home"
+    ],
+    "screen": "shared/RewriteAssist",
+    "impl": "Placeholder",
+    "status": "Done",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Recommendation explainability & evidence"
+  },
+  {
+    "id": "TCA-044",
+    "epic": "E10",
+    "epic_name": "E10 Generative Recommendations & Rewrite",
+    "verticals": [
+      "home"
+    ],
+    "screen": "shared/RewriteAssist",
+    "impl": "Stub (coming soon)",
+    "status": "Partial",
+    "phase": "Phase 3 (Advanced)",
+    "priority": "Could",
+    "functionality": "AI rewrite assist (guardrailed)"
+  },
+  {
+    "id": "TCA-045",
+    "epic": "E10",
+    "epic_name": "E10 Generative Recommendations & Rewrite",
+    "verticals": [
+      "home"
+    ],
+    "screen": "shared/RewriteAssist",
+    "impl": "Stub (coming soon)",
+    "status": "Partial",
+    "phase": "Phase 3 (Advanced)",
+    "priority": "Could",
+    "functionality": "Predicted-uplift simulation"
+  },
+  {
+    "id": "TCA-046",
+    "epic": "E11",
+    "epic_name": "E11 Channel & Format Optimization",
+    "verticals": [
+      "blog",
+      "social"
+    ],
+    "screen": "social/VerticalWorkspace",
+    "impl": "Placeholder",
+    "status": "Partial",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Channel-specific guidance"
+  },
+  {
+    "id": "TCA-047",
+    "epic": "E11",
+    "epic_name": "E11 Channel & Format Optimization",
+    "verticals": [
+      "social"
+    ],
+    "screen": "social/VerticalWorkspace",
+    "impl": "Stub (coming soon)",
+    "status": "To Do",
+    "phase": "Phase 3 (Advanced)",
+    "priority": "Could",
+    "functionality": "Subject-line & hook optimization"
+  },
+  {
+    "id": "TCA-048",
+    "epic": "E12",
+    "epic_name": "E12 Authoring Integrations",
+    "verticals": [
+      "home"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder (MVP screen)",
+    "status": "Partial",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Microsoft Word & PowerPoint add-ins"
+  },
+  {
+    "id": "TCA-049",
+    "epic": "E12",
+    "epic_name": "E12 Authoring Integrations",
+    "verticals": [
+      "home"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder",
+    "status": "Partial",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Outlook & Teams pre-send integration"
+  },
+  {
+    "id": "TCA-050",
+    "epic": "E12",
+    "epic_name": "E12 Authoring Integrations",
+    "verticals": [
+      "home"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder",
+    "status": "Partial",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "API & SDK for embedding"
+  },
+  {
+    "id": "TCA-051",
+    "epic": "E13",
+    "epic_name": "E13 Workflow, Review & Approval Gates",
+    "verticals": [
+      "governance"
+    ],
+    "screen": "governance/GovernanceModule",
+    "impl": "Placeholder",
+    "status": "Partial",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Review & approval workflow"
+  },
+  {
+    "id": "TCA-052",
+    "epic": "E13",
+    "epic_name": "E13 Workflow, Review & Approval Gates",
+    "verticals": [
+      "governance"
+    ],
+    "screen": "governance/GovernanceModule",
+    "impl": "Placeholder",
+    "status": "Done",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Quality gates / score thresholds"
+  },
+  {
+    "id": "TCA-053",
+    "epic": "E13",
+    "epic_name": "E13 Workflow, Review & Approval Gates",
+    "verticals": [
+      "governance"
+    ],
+    "screen": "governance/GovernanceModule",
+    "impl": "Stub (coming soon)",
+    "status": "Done",
+    "phase": "Phase 3 (Advanced)",
+    "priority": "Could",
+    "functionality": "Collaboration & comments"
+  },
+  {
+    "id": "TCA-054",
+    "epic": "E13",
+    "epic_name": "E13 Workflow, Review & Approval Gates",
+    "verticals": [
+      "governance"
+    ],
+    "screen": "governance/GovernanceModule",
+    "impl": "Placeholder",
+    "status": "Partial",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Report export & sharing"
+  },
+  {
+    "id": "TCA-055",
+    "epic": "E14",
+    "epic_name": "E14 Analytics, Dashboards & Program Insights",
+    "verticals": [
+      "analytics"
+    ],
+    "screen": "analytics/InsightsConsole",
+    "impl": "Placeholder",
+    "status": "Done",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Comms-health dashboard"
+  },
+  {
+    "id": "TCA-056",
+    "epic": "E14",
+    "epic_name": "E14 Analytics, Dashboards & Program Insights",
+    "verticals": [
+      "analytics"
+    ],
+    "screen": "analytics/InsightsConsole",
+    "impl": "Stub (coming soon)",
+    "status": "Done",
+    "phase": "Phase 3 (Advanced)",
+    "priority": "Could",
+    "functionality": "Team & author scorecards"
+  },
+  {
+    "id": "TCA-057",
+    "epic": "E14",
+    "epic_name": "E14 Analytics, Dashboards & Program Insights",
+    "verticals": [
+      "analytics"
+    ],
+    "screen": "analytics/InsightsConsole",
+    "impl": "Stub (coming soon)",
+    "status": "Partial",
+    "phase": "Phase 3 (Advanced)",
+    "priority": "Could",
+    "functionality": "Pre-send predicted-engagement estimate"
+  },
+  {
+    "id": "TCA-058",
+    "epic": "E14",
+    "epic_name": "E14 Analytics, Dashboards & Program Insights",
+    "verticals": [
+      "analytics"
+    ],
+    "screen": "analytics/InsightsConsole",
+    "impl": "Stub (coming soon)",
+    "status": "To Do",
+    "phase": "Phase 3 (Advanced)",
+    "priority": "Could",
+    "functionality": "ROI & outcome correlation"
+  },
+  {
+    "id": "TCA-059",
+    "epic": "E15",
+    "epic_name": "E15 Compliance, Inclusivity & Risk Guardrails",
+    "verticals": [
+      "governance"
+    ],
+    "screen": "governance/GovernanceModule",
+    "impl": "Placeholder (MVP screen)",
+    "status": "Done",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Inclusive & non-discriminatory language"
+  },
+  {
+    "id": "TCA-060",
+    "epic": "E15",
+    "epic_name": "E15 Compliance, Inclusivity & Risk Guardrails",
+    "verticals": [
+      "governance"
+    ],
+    "screen": "governance/GovernanceModule",
+    "impl": "Placeholder",
+    "status": "Partial",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Regulated-claim & risk-language guardrails"
+  },
+  {
+    "id": "TCA-061",
+    "epic": "E15",
+    "epic_name": "E15 Compliance, Inclusivity & Risk Guardrails",
+    "verticals": [
+      "governance"
+    ],
+    "screen": "governance/GovernanceModule",
+    "impl": "Placeholder (MVP screen)",
+    "status": "Done",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Data-privacy consent & DPDP/GDPR"
+  },
+  {
+    "id": "TCA-062",
+    "epic": "E16",
+    "epic_name": "E16 Model Governance, Explainability & Validation",
+    "verticals": [
+      "governance"
+    ],
+    "screen": "governance/GovernanceModule",
+    "impl": "Placeholder",
+    "status": "Done",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Explainable scores"
+  },
+  {
+    "id": "TCA-063",
+    "epic": "E16",
+    "epic_name": "E16 Model Governance, Explainability & Validation",
+    "verticals": [
+      "governance"
+    ],
+    "screen": "governance/GovernanceModule",
+    "impl": "Placeholder (MVP screen)",
+    "status": "Partial",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Accuracy validation & norms"
+  },
+  {
+    "id": "TCA-064",
+    "epic": "E16",
+    "epic_name": "E16 Model Governance, Explainability & Validation",
+    "verticals": [
+      "governance"
+    ],
+    "screen": "governance/GovernanceModule",
+    "impl": "Placeholder",
+    "status": "Partial",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Bias & fairness checks"
+  },
+  {
+    "id": "TCA-065",
+    "epic": "E16",
+    "epic_name": "E16 Model Governance, Explainability & Validation",
+    "verticals": [
+      "governance"
+    ],
+    "screen": "governance/GovernanceModule",
+    "impl": "Placeholder",
+    "status": "Partial",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Model cards & human-in-the-loop"
+  },
+  {
+    "id": "TCA-066",
+    "epic": "E16",
+    "epic_name": "E16 Model Governance, Explainability & Validation",
+    "verticals": [
+      "governance"
+    ],
+    "screen": "governance/GovernanceModule",
+    "impl": "Placeholder",
+    "status": "Done",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Audit log of analyses & overrides"
+  },
+  {
+    "id": "TCA-067",
+    "epic": "E17",
+    "epic_name": "E17 Security, Privacy, IP & Data Residency",
+    "verticals": [
+      "governance"
+    ],
+    "screen": "governance/GovernanceModule",
+    "impl": "Placeholder (MVP screen)",
+    "status": "Done",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Enterprise SSO & RBAC"
+  },
+  {
+    "id": "TCA-068",
+    "epic": "E17",
+    "epic_name": "E17 Security, Privacy, IP & Data Residency",
+    "verticals": [
+      "governance"
+    ],
+    "screen": "governance/GovernanceModule",
+    "impl": "Placeholder (MVP screen)",
+    "status": "Done",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Data residency & tenant isolation"
+  },
+  {
+    "id": "TCA-069",
+    "epic": "E17",
+    "epic_name": "E17 Security, Privacy, IP & Data Residency",
+    "verticals": [
+      "governance"
+    ],
+    "screen": "governance/GovernanceModule",
+    "impl": "Placeholder",
+    "status": "Partial",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "On-prem / private / air-gapped deployment"
+  },
+  {
+    "id": "TCA-070",
+    "epic": "E17",
+    "epic_name": "E17 Security, Privacy, IP & Data Residency",
+    "verticals": [
+      "governance"
+    ],
+    "screen": "governance/GovernanceModule",
+    "impl": "Placeholder (MVP screen)",
+    "status": "Done",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Content IP & no-training guarantee"
+  },
+  {
+    "id": "TCA-071",
+    "epic": "E17",
+    "epic_name": "E17 Security, Privacy, IP & Data Residency",
+    "verticals": [
+      "governance"
+    ],
+    "screen": "governance/GovernanceModule",
+    "impl": "Placeholder",
+    "status": "Partial",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "PII detection & redaction in artifacts"
+  },
+  {
+    "id": "TCA-072",
+    "epic": "E18",
+    "epic_name": "E18 Platform Foundation, API & Reliability",
+    "verticals": [
+      "home"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder (MVP screen)",
+    "status": "Done",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Scalable inference architecture"
+  },
+  {
+    "id": "TCA-073",
+    "epic": "E18",
+    "epic_name": "E18 Platform Foundation, API & Reliability",
+    "verticals": [
+      "home",
+      "placement"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder",
+    "status": "Partial",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Async batch audit jobs"
+  },
+  {
+    "id": "TCA-074",
+    "epic": "E18",
+    "epic_name": "E18 Platform Foundation, API & Reliability",
+    "verticals": [
+      "home"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder",
+    "status": "Done",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Multi-tenant SaaS foundation"
+  },
+  {
+    "id": "TCA-075",
+    "epic": "E18",
+    "epic_name": "E18 Platform Foundation, API & Reliability",
+    "verticals": [
+      "home"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Placeholder",
+    "status": "Done",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Should",
+    "functionality": "Observability & reliability"
+  },
+  {
+    "id": "TCA-076",
+    "epic": "E18",
+    "epic_name": "E18 Platform Foundation, API & Reliability",
+    "verticals": [
+      "home"
+    ],
+    "screen": "home/CommandCenter",
+    "impl": "Stub (coming soon)",
+    "status": "Partial",
+    "phase": "Phase 3 (Advanced)",
+    "priority": "Could",
+    "functionality": "Connector & integration framework"
+  },
+  {
+    "id": "TCA-077",
+    "epic": "E19",
+    "epic_name": "E19 LinkedIn Context Enrichment & Input",
+    "verticals": [
+      "linkedin"
+    ],
+    "screen": "linkedin/PersonaPicker",
+    "impl": "Real (placeholder logic)",
+    "status": "To Do",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Dynamic Target Persona Picker"
+  },
+  {
+    "id": "TCA-078",
+    "epic": "E19",
+    "epic_name": "E19 LinkedIn Context Enrichment & Input",
+    "verticals": [
+      "linkedin"
+    ],
+    "screen": "linkedin/AntiGenericWizard",
+    "impl": "Real (placeholder logic)",
+    "status": "To Do",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "\u201cAnti-Generic\u201d frictionless prompter"
+  },
+  {
+    "id": "TCA-079",
+    "epic": "E19",
+    "epic_name": "E19 LinkedIn Context Enrichment & Input",
+    "verticals": [
+      "linkedin"
+    ],
+    "screen": "linkedin/MultimodalDropZone",
+    "impl": "Real (placeholder logic)",
+    "status": "To Do",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Multimodal asset ingestion terminal"
+  },
+  {
+    "id": "TCA-080",
+    "epic": "E20",
+    "epic_name": "E20 LinkedIn Multimodal Processing Engine",
+    "verticals": [
+      "linkedin"
+    ],
+    "screen": "linkedin/AnalyzeTab",
+    "impl": "Placeholder (MVP screen)",
+    "status": "To Do",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Technical text parser"
+  },
+  {
+    "id": "TCA-081",
+    "epic": "E20",
+    "epic_name": "E20 LinkedIn Multimodal Processing Engine",
+    "verticals": [
+      "linkedin"
+    ],
+    "screen": "linkedin/AnalyzeTab",
+    "impl": "Placeholder",
+    "status": "To Do",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Visual component reader"
+  },
+  {
+    "id": "TCA-082",
+    "epic": "E20",
+    "epic_name": "E20 LinkedIn Multimodal Processing Engine",
+    "verticals": [
+      "linkedin"
+    ],
+    "screen": "linkedin/AnalyzeTab",
+    "impl": "Placeholder",
+    "status": "To Do",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Code quality & context checker"
+  },
+  {
+    "id": "TCA-083",
+    "epic": "E21",
+    "epic_name": "E21 LinkedIn Structured Insight & Scoring Dashboard",
+    "verticals": [
+      "linkedin"
+    ],
+    "screen": "linkedin/AnalyzeTab",
+    "impl": "Real (placeholder logic)",
+    "status": "To Do",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Structured 4-part feedback matrix engine"
+  },
+  {
+    "id": "TCA-084",
+    "epic": "E21",
+    "epic_name": "E21 LinkedIn Structured Insight & Scoring Dashboard",
+    "verticals": [
+      "linkedin"
+    ],
+    "screen": "linkedin/AnalyzeTab",
+    "impl": "Placeholder",
+    "status": "To Do",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Visual-text alignment scorer"
+  },
+  {
+    "id": "TCA-085",
+    "epic": "E21",
+    "epic_name": "E21 LinkedIn Structured Insight & Scoring Dashboard",
+    "verticals": [
+      "linkedin"
+    ],
+    "screen": "linkedin/AnalyzeTab",
+    "impl": "Placeholder (MVP screen)",
+    "status": "To Do",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Content structure & readability scorer"
+  },
+  {
+    "id": "TCA-086",
+    "epic": "E21",
+    "epic_name": "E21 LinkedIn Structured Insight & Scoring Dashboard",
+    "verticals": [
+      "linkedin"
+    ],
+    "screen": "linkedin/AnalyzeTab",
+    "impl": "Placeholder (MVP screen)",
+    "status": "To Do",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Technical depth & authenticity scorer"
+  },
+  {
+    "id": "TCA-087",
+    "epic": "E21",
+    "epic_name": "E21 LinkedIn Structured Insight & Scoring Dashboard",
+    "verticals": [
+      "linkedin"
+    ],
+    "screen": "linkedin/AnalyzeTab",
+    "impl": "Real (placeholder logic)",
+    "status": "To Do",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Must",
+    "functionality": "Real-time feedback sidebar/overlay UI"
+  },
+  {
+    "id": "TCA-088",
+    "epic": "E22",
+    "epic_name": "E22 LinkedIn Technical Engagement & Comment Helper",
+    "verticals": [
+      "linkedin"
+    ],
+    "screen": "linkedin/EngagementHelper",
+    "impl": "Placeholder",
+    "status": "To Do",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Peer-post relevance ranker"
+  },
+  {
+    "id": "TCA-089",
+    "epic": "E22",
+    "epic_name": "E22 LinkedIn Technical Engagement & Comment Helper",
+    "verticals": [
+      "linkedin"
+    ],
+    "screen": "linkedin/EngagementHelper",
+    "impl": "Placeholder",
+    "status": "To Do",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Should",
+    "functionality": "Technical counter-perspective draftsman"
+  },
+  {
+    "id": "TCA-090",
+    "epic": "E22",
+    "epic_name": "E22 LinkedIn Technical Engagement & Comment Helper",
+    "verticals": [
+      "linkedin"
+    ],
+    "screen": "linkedin/EngagementHelper",
+    "impl": "Placeholder",
+    "status": "To Do",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Must",
+    "functionality": "Tone & authority guardrail for comments"
+  },
+  {
+    "id": "TCA-091",
+    "epic": "E21",
+    "epic_name": "E21 LinkedIn Structured Insight & Scoring Dashboard",
+    "verticals": [
+      "linkedin"
+    ],
+    "screen": "linkedin/AnalyzerWorkspace",
+    "impl": "Real (placeholder logic)",
+    "status": "To Do",
+    "phase": "Phase 1 (Pilot/MVP)",
+    "priority": "Should",
+    "functionality": "Split-panel draft & feedback workspace"
+  },
+  {
+    "id": "TCA-092",
+    "epic": "E21",
+    "epic_name": "E21 LinkedIn Structured Insight & Scoring Dashboard",
+    "verticals": [
+      "linkedin"
+    ],
+    "screen": "linkedin/DraftEditor",
+    "impl": "Placeholder",
+    "status": "To Do",
+    "phase": "Phase 2 (Scale)",
+    "priority": "Could",
+    "functionality": "Quick-insert developer markdown toolbar"
+  }
+]

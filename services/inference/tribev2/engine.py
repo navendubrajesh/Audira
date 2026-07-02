@@ -16,6 +16,28 @@ import time
 from typing import Any
 
 _model = None
+TRIBE_MODEL_ID = "facebook/tribev2"
+
+
+def _ensure_hf_auth() -> None:
+    try:
+        from audira_core.huggingface import ensure_hf_login
+
+        ensure_hf_login()
+    except ImportError:
+        token = (
+            os.environ.get("HF_TOKEN")
+            or os.environ.get("HUGGINGFACE_HUB_TOKEN")
+            or os.environ.get("HUGGING_FACE_HUB_TOKEN")
+            or ""
+        ).strip()
+        if not token:
+            raise RuntimeError(
+                "HF_TOKEN is not set. Add a Hugging Face Read token to download "
+                f"{TRIBE_MODEL_ID} and its gated LLaMA 3.2 dependency."
+            ) from None
+        os.environ["HF_TOKEN"] = token
+        os.environ["HUGGINGFACE_HUB_TOKEN"] = token
 
 
 def _get_model():
@@ -23,8 +45,9 @@ def _get_model():
     if _model is None:
         from tribev2 import TribeModel
 
+        _ensure_hf_auth()
         cache = os.environ.get("TRIBE_CACHE_DIR", "/cache/tribev2")
-        _model = TribeModel.from_pretrained("facebook/tribev2", cache_folder=cache)
+        _model = TribeModel.from_pretrained(TRIBE_MODEL_ID, cache_folder=cache)
     return _model
 
 
@@ -65,7 +88,7 @@ def run_tribe_inference(modality: str, payload: dict[str, Any]) -> dict[str, Any
 
         return {
             "output": {
-                "model": "facebook/tribev2",
+                "model": TRIBE_MODEL_ID,
                 "license": "CC-BY-NC-4.0",
                 "modality": modality,
                 "raw_fmri_shape": list(preds.shape),
@@ -77,7 +100,7 @@ def run_tribe_inference(modality: str, payload: dict[str, Any]) -> dict[str, Any
             "latency_ms": latency_ms,
             "cost_usd": float(os.environ.get("TRIBE_COST_USD_ESTIMATE", "0.08")),
             "provider": "tribe-v2-gpu",
-            "model_id": "facebook/tribev2",
+            "model_id": TRIBE_MODEL_ID,
         }
     finally:
         if temp_path and os.path.exists(temp_path):

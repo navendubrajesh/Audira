@@ -55,8 +55,9 @@ async def get_residency(
     principal: Annotated[Principal, Depends(get_current_user)],
     db: Annotated[AsyncSession, Depends(get_db)],
 ) -> ResidencyResponse:
-    tenant = await ensure_default_tenant(db)
-    assert_tenant_resource(tenant.id, principal.tenant_id)
+    tenant = await get_tenant(db, principal.tenant_id)
+    if not tenant:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Tenant not found")
     return ResidencyResponse(**residency_view(tenant))
 
 

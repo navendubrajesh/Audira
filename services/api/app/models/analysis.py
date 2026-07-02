@@ -42,3 +42,21 @@ class ArtifactUpload(Base):
     parsed: Mapped[dict] = mapped_column(JSON, nullable=False, default=dict)
     is_engineering: Mapped[bool] = mapped_column(default=False)
     created_at: Mapped[datetime] = mapped_column(default=lambda: datetime.now(UTC))
+
+
+class AnalysisComment(Base):
+    """TCA-053 — threaded comments on analysis runs."""
+
+    __tablename__ = "analysis_comments"
+
+    id: Mapped[uuid.UUID] = mapped_column(Uuid, primary_key=True, default=uuid.uuid4)
+    tenant_id: Mapped[uuid.UUID] = mapped_column(Uuid, nullable=False, index=True)
+    analysis_run_id: Mapped[uuid.UUID] = mapped_column(Uuid, nullable=False, index=True)
+    user_id: Mapped[uuid.UUID] = mapped_column(Uuid, nullable=False)
+    author_email: Mapped[str] = mapped_column(String(255), nullable=False)
+    body: Mapped[str] = mapped_column(Text, nullable=False)
+    assignee_email: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    resolved: Mapped[bool] = mapped_column(default=False)
+    parent_id: Mapped[uuid.UUID | None] = mapped_column(Uuid, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(default=lambda: datetime.now(UTC))
+

@@ -11,7 +11,9 @@
     "dev:web": "npm run dev --workspace=@audira/web",
     "build:web": "npm run build --workspace=@audira/web",
     "lint:web": "npm run lint --workspace=@audira/web",
-    "test:web": "npm run test --workspace=@audira/web"
+    "test:web": "npm run test --workspace=@audira/web",
+    "dev:studio": "npm run dev --workspace=@audira/studio",
+    "build:studio": "npm run build --workspace=@audira/studio"
   },
   "engines": {
     "node": ">=20"

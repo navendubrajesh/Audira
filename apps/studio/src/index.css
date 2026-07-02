@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --surface: 210 20% 98%;
+  --surface-raised: 0 0% 100%;
+  --surface-overlay: 210 16% 96%;
+  --border: 214 20% 88%;
+  --primary: 172 66% 32%;
+  --primary-foreground: 0 0% 100%;
+  --accent: 32 95% 44%;
+  --accent-foreground: 24 10% 10%;
+  --muted: 210 16% 93%;
+  --muted-foreground: 215 14% 40%;
+  --success: 152 69% 31%;
+  --warning: 32 95% 44%;
+  --danger: 0 72% 51%;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --shadow-card: 0 1px 2px rgb(15 23 42 / 0.06), 0 1px 3px rgb(15 23 42 / 0.08);
+  --shadow-elevated: 0 8px 24px rgb(15 23 42 / 0.1);
+  --rail-width: 3.5rem;
+  --rail-width-expanded: 4.5rem;
+  --context-width: 18rem;
+}
+
+.dark {
+  --surface: 222 24% 8%;
+  --surface-raised: 222 22% 11%;
+  --surface-overlay: 222 20% 14%;
+  --border: 217 16% 22%;
+  --primary: 172 55% 42%;
+  --primary-foreground: 222 24% 8%;
+  --accent: 38 92% 50%;
+  --accent-foreground: 24 10% 10%;
+  --muted: 217 16% 18%;
+  --muted-foreground: 215 14% 65%;
+  --success: 152 55% 42%;
+  --warning: 38 92% 50%;
+  --danger: 0 62% 55%;
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3);
+  --shadow-elevated: 0 8px 24px rgb(0 0 0 / 0.45);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-surface font-sans text-[15px] text-slate-900 antialiased dark:text-slate-100;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-surface;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+}

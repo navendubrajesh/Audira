@@ -15,8 +15,26 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.models.analysis import AnalysisRun
 from app.models.audience import Audience
 from app.models.context import ArtifactType, BrandProfile, StandardsRule
-from app.models.governance import ModelRegistryEntry, TenantPrivacySettings
+from app.models.governance import (
+    ModelRegistryEntry,
+    TenantGuardrailSettings,
+    TenantPrivacySettings,
+    TenantQualityGates,
+)
+from app.services.guardrails import check_generative_governance, check_regulated_claims
 from app.services.heatmap import generate_attention_heatmap
+from app.services.scoring.extended import (
+    detect_language,
+    explain_drivers,
+    score_clutter,
+    score_cognitive_load,
+    score_crisis_framing,
+    score_early_attention,
+    score_emotion,
+    score_key_message,
+    score_memorability,
+    score_subject_line,
+)
 from app.services.scoring.brand import score_brand_alignment
 from app.services.scoring.composite import composite_score, quality_verdict, weights_for_objective
 from app.services.scoring.inclusive import score_inclusive_language
@@ -222,19 +240,52 @@ async def run_text_analysis(
     if "structure" in checks:
         metrics["structure"] = score_structure(text, channel=channel or artifact_type_code)
 
+    # Extended Phase 2/3 scorers (always available for text)
+    metrics["language"] = detect_language(text)
+    metrics["clutter"] = score_clutter(text)
+    metrics["emotion"] = score_emotion(text)
+    metrics["crisis_framing"] = score_crisis_framing(text)
+    metrics["cognitive_load"] = score_cognitive_load(text)
+    metrics["key_message"] = score_key_message(text)
+    metrics["memorability"] = score_memorability(text)
+    metrics["early_attention"] = score_early_attention(text)
+    if channel in ("email", "slack") or artifact_type_code == "email":
+        metrics["subject_line"] = score_subject_line(text, channel=channel)
+
+    guardrail_settings = await db.get(TenantGuardrailSettings, tenant_id)
+    guardrail_results: dict = {}
+    if guardrail_settings:
+        if guardrail_settings.generative_governance:
+            guardrail_results["generative"] = check_generative_governance(text)
+        if guardrail_settings.regulated_claims:
+            guardrail_results["regulated"] = check_regulated_claims(text)
+        if guardrail_settings.block_on_fail:
+            for gr in guardrail_results.values():
+                if gr.get("action") in ("block", "review_required"):
+                    raise HTTPException(
+                        status_code=422,
+                        detail={"guardrail": gr.get("metric"), "action": gr.get("action"), "result": gr},
+                    )
+
     inference_meta: dict = {"skipped": True, "reason": "fast_lane"}
     run_full = full_analysis or (not fast_lane)
 
     if run_full and "engagement" in checks:
+        privacy_row = await db.get(TenantPrivacySettings, tenant_id)
         provider = build_provider(
             model_id=model_id,
             inference_base_url=settings.inference_base_url,
             inference_api_key=settings.inference_api_key,
         )
+        payload = {
+            "text": text,
+            "artifact_type": artifact_type_code,
+            "no_train": privacy_row.no_train if privacy_row else True,
+        }
         inference = await provider.run(
             InferenceRequest(
                 modality=Modality.TEXT,
-                payload={"text": text, "artifact_type": artifact_type_code},
+                payload=payload,
                 model_id=model_id,
             )
         )
@@ -266,11 +317,19 @@ async def run_text_analysis(
 
     weight_profile = weights_for_objective(objective)
     composite = composite_score(metrics, objective=objective, weights=weight_profile)
-    verdict = quality_verdict(composite)
+    gates = await db.get(TenantQualityGates, tenant_id)
+    pass_t = gates.pass_threshold if gates else 70.0
+    verdict = quality_verdict(composite, pass_threshold=pass_t)
+    if gates and gates.block_publish_on_fail and verdict["label"] == "fail":
+        verdict["blocked"] = True
     suggestions = _rewrite_suggestions(metrics, text)
+    explainability = explain_drivers(metrics, composite)
     latency_ms = int((time.perf_counter() - started) * 1000)
     if not inference_meta.get("skipped"):
         latency_ms += inference_meta.get("latency_ms", 0)
+
+    privacy_row = await db.get(TenantPrivacySettings, tenant_id)
+    stored_text = None if (privacy_row and privacy_row.zero_retention) else text
 
     run = AnalysisRun(
         tenant_id=tenant_id,
@@ -279,7 +338,7 @@ async def run_text_analysis(
         artifact_type_code=artifact_type_code,
         objective=objective,
         channel=channel,
-        input_text=text,
+        input_text=stored_text,
         input_hash=hashlib.sha256(text.encode()).hexdigest(),
         model_id=model_id if run_full else "fast-lane",
         model_version="1.0.0",
@@ -293,6 +352,8 @@ async def run_text_analysis(
             "weight_profile": weight_profile,
             "checks_run": checks,
             "rewrite_suggestions": suggestions,
+            "explainability": explainability,
+            "guardrails": guardrail_results,
             "inference": inference_meta,
             "privacy": privacy_meta,
             "personalization": {

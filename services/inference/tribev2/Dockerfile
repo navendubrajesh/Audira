@@ -5,12 +5,14 @@ FROM python:3.12-slim
 WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
+    PYTHONPATH=/shared:/app \
     TRIBE_CACHE_DIR=/cache/tribev2 \
     HF_HOME=/cache/huggingface
 
 COPY services/inference/tribev2/requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
 
+COPY services/shared/ /shared/
 COPY services/inference/tribev2/ /app/
 
 EXPOSE 8080

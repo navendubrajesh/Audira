@@ -5,6 +5,8 @@ from uuid import UUID
 
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, status
 from pydantic import BaseModel, Field
+from datetime import UTC, datetime, timedelta
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -13,7 +15,9 @@ from app.auth.principal import Principal
 from app.db.session import get_db
 from app.models.analysis import AnalysisRun, ArtifactUpload
 from app.models.context import ArtifactType
+from app.models.governance import TenantPrivacySettings
 from app.services.analysis_service import rerun_analysis, run_text_analysis
+from app.services.audit import record_audit
 from app.services.document_parser import parse_document
 from app.services.storage import store_artifact
 from app.services.tenant_service import TenantIsolationError, assert_tenant_resource
@@ -90,6 +94,19 @@ async def analyze_text(
         fast_lane=body.fast_lane,
         full_analysis=body.full_analysis,
     )
+    await record_audit(
+        db,
+        tenant_id=principal.tenant_id,
+        action="analysis.completed",
+        actor_user_id=principal.user_id,
+        actor_email=principal.email,
+        resource=f"analysis:{run.id}",
+        metadata={
+            "composite_score": run.composite_score,
+            "artifact_type": body.artifact_type_code,
+            "fast_lane": body.fast_lane,
+        },
+    )
     return AnalyzeResponse(
         id=str(run.id),
         composite_score=run.composite_score,
@@ -127,11 +144,22 @@ async def compare_variants(
     )
     score_a = run_a.composite_score or 0
     score_b = run_b.composite_score or 0
+    metrics_a = run_a.result.get("metrics", {})
+    metrics_b = run_b.result.get("metrics", {})
+    diffs = []
+    for key in set(metrics_a) | set(metrics_b):
+        sa = metrics_a.get(key, {})
+        sb = metrics_b.get(key, {})
+        if isinstance(sa, dict) and isinstance(sb, dict) and "score" in sa and "score" in sb:
+            diffs.append({"metric": key, "a": sa["score"], "b": sb["score"], "delta": round(sb["score"] - sa["score"], 1)})
+    diffs.sort(key=lambda d: abs(d["delta"]), reverse=True)
     return {
         "variant_a": {"id": str(run_a.id), "composite_score": score_a},
         "variant_b": {"id": str(run_b.id), "composite_score": score_b},
         "winner": "a" if score_a >= score_b else "b",
         "delta": round(abs(score_a - score_b), 1),
+        "metric_diffs": diffs[:10],
+        "highlights": [d for d in diffs if abs(d["delta"]) >= 5][:5],
     }
 
 
@@ -158,9 +186,13 @@ async def list_runs(
     db: Annotated[AsyncSession, Depends(get_db)],
     limit: int = 20,
 ):
+    privacy = await db.get(TenantPrivacySettings, principal.tenant_id)
+    retention_days = privacy.retention_days if privacy else 90
+    cutoff = datetime.now(UTC) - timedelta(days=retention_days)
+
     result = await db.execute(
         select(AnalysisRun)
-        .where(AnalysisRun.tenant_id == principal.tenant_id)
+        .where(AnalysisRun.tenant_id == principal.tenant_id, AnalysisRun.created_at >= cutoff)
         .order_by(AnalysisRun.created_at.desc())
         .limit(min(limit, 100))
     )

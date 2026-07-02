@@ -12,6 +12,7 @@ class Settings(BaseSettings):
 
     inference_base_url: str = ""
     inference_api_key: str = ""
+    hf_token: str = ""
     worker_max_jobs: int = 10
 
 

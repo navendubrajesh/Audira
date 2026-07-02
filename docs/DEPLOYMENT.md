@@ -56,7 +56,7 @@ Without a GPU, jobs use the **mock provider** (stub metrics). To test real TRIBE
 
 ```bash
 cd services/inference/tribev2
-huggingface-cli login          # required for LLaMA 3.2 encoder
+hf auth login                   # required for LLaMA 3.2 encoder (`huggingface-cli` is deprecated)
 pip install -r requirements.txt
 # pip install tribev2 per https://huggingface.co/facebook/tribev2
 uvicorn main:app --port 8080

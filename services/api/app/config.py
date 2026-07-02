@@ -34,6 +34,9 @@ class Settings(BaseSettings):
     inference_api_key: str = ""
     inference_monthly_cost_cap_usd: float = 500.0
 
+    # Hugging Face — Read token for facebook/tribev2 (free tier works; upgrade later)
+    hf_token: str = ""
+
     # Google OAuth (console.cloud.google.com → Credentials → OAuth client ID)
     oauth_redirect_uri: str = "http://localhost:8000/auth/callback"
     google_client_id: str = ""

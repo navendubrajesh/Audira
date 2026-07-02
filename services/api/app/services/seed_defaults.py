@@ -6,8 +6,14 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.audience import Audience
-from app.models.context import ArtifactType, BrandProfile
-from app.models.governance import ModelRegistryEntry, TenantPrivacySettings, ValidationMetric
+from app.models.context import ArtifactType, BrandProfile, StandardsRule
+from app.models.governance import (
+    ModelRegistryEntry,
+    TenantGuardrailSettings,
+    TenantPrivacySettings,
+    TenantQualityGates,
+    ValidationMetric,
+)
 
 DEFAULT_AUDIENCES = [
     {
@@ -122,25 +128,66 @@ VALIDATION_METRICS = [
     {"metric_name": "trust", "accuracy": 0.74, "sample_size": 95},
 ]
 
+DEFAULT_STANDARDS = [
+    {
+        "rule_type": "inclusive",
+        "pattern": "guys",
+        "replacement": "team / everyone",
+        "status": "published",
+    },
+    {
+        "rule_type": "inclusive",
+        "pattern": "blacklist",
+        "replacement": "blocklist",
+        "status": "published",
+    },
+    {
+        "rule_type": "jargon",
+        "pattern": "synergize",
+        "replacement": "work together",
+        "status": "published",
+    },
+    {
+        "rule_type": "jargon",
+        "pattern": "leverage",
+        "replacement": "use",
+        "status": "published",
+    },
+]
+
 
 async def seed_tenant_defaults(db: AsyncSession, tenant_id: UUID) -> None:
-    existing = await db.scalar(
+    existing_audience = await db.scalar(
         select(Audience.id).where(Audience.tenant_id == tenant_id).limit(1)
     )
-    if existing:
-        return
+    if not existing_audience:
+        for row in DEFAULT_AUDIENCES:
+            db.add(Audience(tenant_id=tenant_id, attributes={}, **row))
 
-    for row in DEFAULT_AUDIENCES:
-        db.add(Audience(tenant_id=tenant_id, attributes={}, **row))
+        for row in DEFAULT_ARTIFACT_TYPES:
+            db.add(ArtifactType(tenant_id=tenant_id, is_active=True, **row))
 
-    for row in DEFAULT_ARTIFACT_TYPES:
-        db.add(ArtifactType(tenant_id=tenant_id, is_active=True, **row))
-
-    db.add(BrandProfile(tenant_id=tenant_id, status="published", **DEFAULT_BRAND))
+        db.add(BrandProfile(tenant_id=tenant_id, status="published", **DEFAULT_BRAND))
 
     privacy = await db.get(TenantPrivacySettings, tenant_id)
     if not privacy:
         db.add(TenantPrivacySettings(tenant_id=tenant_id))
+
+    if not await db.get(TenantGuardrailSettings, tenant_id):
+        db.add(TenantGuardrailSettings(tenant_id=tenant_id))
+
+    if not await db.get(TenantQualityGates, tenant_id):
+        db.add(TenantQualityGates(tenant_id=tenant_id))
+
+    for row in DEFAULT_STANDARDS:
+        exists = await db.scalar(
+            select(StandardsRule.id).where(
+                StandardsRule.tenant_id == tenant_id,
+                StandardsRule.pattern == row["pattern"],
+            )
+        )
+        if not exists:
+            db.add(StandardsRule(tenant_id=tenant_id, **row))
 
     for row in MODEL_REGISTRY:
         exists = await db.scalar(

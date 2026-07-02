@@ -648,7 +648,7 @@ Copy `.env.example` → `.env` at repo root for local overrides.
 ```bash
 cd services/inference/tribev2
 pip install -r requirements.txt
-huggingface-cli login
+hf auth login   # `huggingface-cli` is deprecated; use `hf`
 uvicorn main:app --port 8080
 ```
 

@@ -884,7 +884,7 @@
       "market_coverage": "Common",
       "is_guardrail": false,
       "dependencies": [],
-      "status": "done"
+      "status": "partial"
     },
     {
       "id": "TCA-050",
@@ -1224,7 +1224,7 @@
       "market_coverage": "Common",
       "is_guardrail": true,
       "dependencies": [],
-      "status": "pending"
+      "status": "partial"
     },
     {
       "id": "TCA-060",
@@ -1244,7 +1244,7 @@
       "market_coverage": "Niche",
       "is_guardrail": true,
       "dependencies": [],
-      "status": "pending"
+      "status": "partial"
     },
     {
       "id": "TCA-062",
@@ -1544,7 +1544,7 @@
       "market_coverage": "Common",
       "is_guardrail": true,
       "dependencies": [],
-      "status": "pending"
+      "status": "partial"
     },
     {
       "id": "TCA-045",

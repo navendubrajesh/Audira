@@ -26,6 +26,7 @@ from app.routers import (
     context,
     features,
     governance,
+    guardrails,
     health,
     inference,
     observability,
@@ -39,6 +40,11 @@ from app.services.tenant_service import ensure_default_tenant
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    if settings.hf_token:
+        from audira_core.huggingface import apply_hf_token_env
+
+        apply_hf_token_env(settings.hf_token)
+
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
     async with async_session_factory() as session:
@@ -78,6 +84,7 @@ def create_app() -> FastAPI:
     app.include_router(context.router)
     app.include_router(analyze.router)
     app.include_router(governance.router)
+    app.include_router(guardrails.router)
     app.include_router(privacy.router)
     app.include_router(observability.router)
     app.include_router(features.router)

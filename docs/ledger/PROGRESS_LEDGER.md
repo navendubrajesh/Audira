@@ -8,7 +8,7 @@ Append-only log of story delivery. One row per state transition.
 | 2026-06-24 | TCA-067 | FR-E17-1 | 1 | **done** | Enterprise SSO & RBAC — WorkOS OAuth, SCIM webhook, 11 roles, audit log, dev login UI. | — |
 | 2026-06-24 | TCA-072 | FR-E18-1 | 1 | **done** | Scalable inference — Arq queue, GPU provider abstraction, batch, SLA, cost cap, cache. | — |
 | 2026-06-24 | TCA-068 | FR-E17-2 | 1 | **done** | Data residency & tenant isolation — Tenant model, IN/EU regions, cross-tenant block. | — |
-| 2026-06-24 | TCA-001–076 | E01–E18 | 1–3 | **audit** | Code audit: objective-weighted composite, fast lane, structure/PII/heatmap, doc parser, compare/rerun, real analytics/add-in routes. 52 done, 21 partial, 3 guardrails pending. | — |
+| 2026-06-24 | TCA-001–076 | E01–E18 | 1–3 | **audit remediation** | Fixed residency bug, JWT fragment auth, analysis audit log, guardrails API (disabled default), extended scorers, seeded standards, analytics UI. 35 tests pass. See `docs/AUDIT.md`. | — |
 
 ---
 
@@ -20,11 +20,11 @@ Append-only log of story delivery. One row per state transition.
 | Phase 1 | 28 |
 | Phase 2 | 36 |
 | Phase 3 | 12 |
-| Done | 52 |
-| Partial | 21 |
-| Pending (guardrails) | 3 |
+| Done | ~52 |
+| Partial | ~24 (incl. guardrails + AV/Office) |
+| Pending | 0 |
 | In progress | 0 |
-| Next up | **TCA-037** — await guardrail sign-off |
+| Next up | Office.js UI, API-key middleware, GPU tier |
 
 ---
 
