@@ -1,12 +1,12 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import { AppShell } from "@/components/shell/app-shell";
-import { TabbedWorkspace } from "@/components/shell/tabbed-workspace";
-import { getDefaultContextId } from "@/config/modules";
-import { AnalyticsDashboard, HomeDashboard } from "@/pages/dashboards";
-import { CompetitorLandscapePage } from "@/pages/competitors";
-import { AssetsPage, GovernancePage, SettingsPage } from "@/pages/governance";
-import type { ModuleId } from "@/types";
+import { AppShell } from "@studio/components/shell/app-shell";
+import { TabbedWorkspace } from "@studio/components/shell/tabbed-workspace";
+import { getDefaultContextId } from "@studio/config/modules";
+import { AnalyticsDashboard, HomeDashboard } from "@studio/pages/dashboards";
+import { CompetitorLandscapePage } from "@studio/pages/competitors";
+import { AssetsPage, GovernancePage, SettingsPage } from "@studio/pages/governance";
+import type { ModuleId } from "@studio/types";
 
 function VerticalModuleRoutes({ module }: { module: ModuleId }) {
   const defaultId = getDefaultContextId(module);

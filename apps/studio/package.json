@@ -3,6 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "main": "./src/app-entry.tsx",
+  "types": "./src/app-entry.tsx",
+  "exports": {
+    ".": "./src/app-entry.tsx",
+    "./css": "./src/index.css"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",

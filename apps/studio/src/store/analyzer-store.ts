@@ -1,8 +1,8 @@
 import { create } from "zustand";
 
-import type { FeedbackCategory, Persona } from "@/types";
-import { scoreDraft } from "@/services/analyzer";
-import { LINKEDIN_SAMPLE_DRAFT, DEFAULT_PERSONAS } from "@/mock/fixtures";
+import type { FeedbackCategory, Persona } from "@studio/types";
+import { scoreDraft } from "@studio/services/analyzer";
+import { LINKEDIN_SAMPLE_DRAFT, DEFAULT_PERSONAS } from "@studio/mock/fixtures";
 
 interface AnalyzerState {
   draftText: string;

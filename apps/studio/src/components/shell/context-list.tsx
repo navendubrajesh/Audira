@@ -2,11 +2,11 @@ import { ChevronDown, Plus, Search } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { ScoreChip } from "@/components/ui/score-chip";
-import { MODULE_CONFIG } from "@/config/modules";
-import { cn } from "@/lib/utils";
-import { useUiStore } from "@/store/ui-store";
-import type { DraftItem, ModuleId } from "@/types";
+import { ScoreChip } from "@studio/components/ui/score-chip";
+import { MODULE_CONFIG } from "@studio/config/modules";
+import { cn } from "@studio/lib/utils";
+import { useUiStore } from "@studio/store/ui-store";
+import type { DraftItem, ModuleId } from "@studio/types";
 
 function ContextRow({
   item,

@@ -1,7 +1,7 @@
-import { BacklogStatusBadge, StoryIdBadge } from "@/components/ui/badge";
-import { storyById } from "@/mock/fixtures";
-import type { BacklogStory } from "@/types";
-import { cn } from "@/lib/utils";
+import { BacklogStatusBadge, StoryIdBadge } from "@studio/components/ui/badge";
+import { storyById } from "@studio/mock/fixtures";
+import type { BacklogStory } from "@studio/types";
+import { cn } from "@studio/lib/utils";
 
 export function FeatureCard({
   storyId,

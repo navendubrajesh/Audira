@@ -1,10 +1,10 @@
 import { Moon, Search, Sun, Wifi, WifiOff } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import { Button } from "@/components/ui/button";
-import { PRODUCT_NAME } from "@/mock/fixtures";
-import { getConnectionStatus } from "@/services/integrations";
-import { useUiStore } from "@/store/ui-store";
+import { Button } from "@studio/components/ui/button";
+import { PRODUCT_NAME } from "@studio/mock/fixtures";
+import { getConnectionStatus } from "@studio/services/integrations";
+import { useUiStore } from "@studio/store/ui-store";
 
 export function GlobalTopBar() {
   const { theme, toggleTheme } = useUiStore();

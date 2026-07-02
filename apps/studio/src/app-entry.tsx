@@ -1,14 +1,15 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+"use client";
+
 import { BrowserRouter } from "react-router-dom";
 
 import { AppRoutes } from "@studio/routes";
 import "@studio/index.css";
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
+/** Mountable entry for Next.js (@audira/web) and Vite (@audira/studio). */
+export function StudioApp() {
+  return (
     <BrowserRouter>
       <AppRoutes />
     </BrowserRouter>
-  </StrictMode>,
-);
+  );
+}

@@ -1,10 +1,10 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
-import { ContextList } from "@/components/shell/context-list";
-import { GlobalTopBar } from "@/components/shell/global-top-bar";
-import { moduleFromPath, ModuleRail } from "@/components/shell/module-rail";
-import { useUiStore } from "@/store/ui-store";
+import { ContextList } from "@studio/components/shell/context-list";
+import { GlobalTopBar } from "@studio/components/shell/global-top-bar";
+import { moduleFromPath, ModuleRail } from "@studio/components/shell/module-rail";
+import { useUiStore } from "@studio/store/ui-store";
 
 export function AppShell() {
   const location = useLocation();

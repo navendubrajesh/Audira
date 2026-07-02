@@ -10,9 +10,9 @@ import {
   YAxis,
 } from "recharts";
 
-import { FeatureGrid } from "@/components/shared/feature-card";
-import { ScoreChip } from "@/components/ui/score-chip";
-import { storiesForEpic } from "@/mock/fixtures";
+import { FeatureGrid } from "@studio/components/shared/feature-card";
+import { ScoreChip } from "@studio/components/ui/score-chip";
+import { storiesForEpic } from "@studio/mock/fixtures";
 
 const EPICS = [
   "E01", "E02", "E03", "E04", "E05", "E06", "E07", "E08", "E09", "E10", "E11",

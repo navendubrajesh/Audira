@@ -1,8 +1,8 @@
 import { FileCode2, Image, Upload } from "lucide-react";
 import { useCallback, useState } from "react";
 
-import { StoryIdBadge } from "@/components/ui/badge";
-import { useAnalyzerStore } from "@/store/analyzer-store";
+import { StoryIdBadge } from "@studio/components/ui/badge";
+import { useAnalyzerStore } from "@studio/store/analyzer-store";
 
 // TODO(TCA-079): Route uploads to asset library with type detection (image/code/diagram)
 // TODO(TCA-004): Block engineering-only artifacts per taxonomy

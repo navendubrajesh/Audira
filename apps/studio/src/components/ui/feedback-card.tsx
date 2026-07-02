@@ -1,9 +1,9 @@
 import { ChevronRight } from "lucide-react";
 
-import { ScoreChip } from "@/components/ui/score-chip";
-import { StoryIdBadge } from "@/components/ui/badge";
-import type { FeedbackCategory } from "@/types";
-import { cn, scoreTone } from "@/lib/utils";
+import { ScoreChip } from "@studio/components/ui/score-chip";
+import { StoryIdBadge } from "@studio/components/ui/badge";
+import type { FeedbackCategory } from "@studio/types";
+import { cn, scoreTone } from "@studio/lib/utils";
 
 export function FeedbackCard({
   item,

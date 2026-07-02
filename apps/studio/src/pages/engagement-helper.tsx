@@ -1,11 +1,11 @@
 import { MessageSquare, ShieldAlert } from "lucide-react";
 import { useState } from "react";
 
-import { FeatureGrid } from "@/components/shared/feature-card";
-import { Button } from "@/components/ui/button";
-import { ScoreChip } from "@/components/ui/score-chip";
-import { StoryIdBadge } from "@/components/ui/badge";
-import { engagementQueue } from "@/mock/fixtures";
+import { FeatureGrid } from "@studio/components/shared/feature-card";
+import { Button } from "@studio/components/ui/button";
+import { ScoreChip } from "@studio/components/ui/score-chip";
+import { StoryIdBadge } from "@studio/components/ui/badge";
+import { engagementQueue } from "@studio/mock/fixtures";
 
 // TODO(TCA-088): Peer-post relevance ranker with live LinkedIn feed stub
 // TODO(TCA-089): Counter-perspective comment draftsman

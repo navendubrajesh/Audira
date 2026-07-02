@@ -1,10 +1,10 @@
-import type { ModuleConfig, ModuleId } from "@/types";
+import type { ModuleConfig, ModuleId } from "@studio/types";
 import {
   blogDrafts,
   linkedinDrafts,
   placementDrafts,
   socialDrafts,
-} from "@/mock/fixtures";
+} from "@studio/mock/fixtures";
 
 export const MODULES: {
   id: ModuleId;

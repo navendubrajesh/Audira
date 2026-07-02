@@ -1,5 +1,5 @@
-import { FeatureGrid } from "@/components/shared/feature-card";
-import { storiesForEpic } from "@/mock/fixtures";
+import { FeatureGrid } from "@studio/components/shared/feature-card";
+import { storiesForEpic } from "@studio/mock/fixtures";
 
 const EPIC_SECTIONS = [
   { epic: "E13", title: "Workflow, Review & Approval Gates" },

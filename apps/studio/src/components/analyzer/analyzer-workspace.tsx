@@ -1,16 +1,16 @@
 import { GitCompare, Loader2, Sparkles, Wand2 } from "lucide-react";
 import { useState } from "react";
 
-import { AntiGenericWizard, PersonaPicker } from "@/components/analyzer/persona-picker";
-import { MultimodalDropZone } from "@/components/analyzer/multimodal-drop-zone";
-import { Button } from "@/components/ui/button";
-import { FeedbackCard } from "@/components/ui/feedback-card";
-import { ScoreGauge } from "@/components/ui/score-chip";
-import { StoryIdBadge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
-import { rewriteAssist } from "@/services/analyzer";
-import { useAnalyzerStore } from "@/store/analyzer-store";
-import { useUiStore } from "@/store/ui-store";
+import { AntiGenericWizard, PersonaPicker } from "@studio/components/analyzer/persona-picker";
+import { MultimodalDropZone } from "@studio/components/analyzer/multimodal-drop-zone";
+import { Button } from "@studio/components/ui/button";
+import { FeedbackCard } from "@studio/components/ui/feedback-card";
+import { ScoreGauge } from "@studio/components/ui/score-chip";
+import { StoryIdBadge } from "@studio/components/ui/badge";
+import { cn } from "@studio/lib/utils";
+import { rewriteAssist } from "@studio/services/analyzer";
+import { useAnalyzerStore } from "@studio/store/analyzer-store";
+import { useUiStore } from "@studio/store/ui-store";
 
 // TODO(TCA-091): Persist split ratio per user
 // TODO(TCA-092): Markdown toolbar with code-block insert

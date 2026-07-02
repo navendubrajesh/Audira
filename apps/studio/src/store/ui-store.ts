@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import type { ModuleId, WorkspaceTab } from "@/types";
+import type { ModuleId, WorkspaceTab } from "@studio/types";
 
 interface UiState {
   theme: "light" | "dark";

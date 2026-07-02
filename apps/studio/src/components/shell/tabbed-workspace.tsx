@@ -1,9 +1,9 @@
 import { NavLink, useParams } from "react-router-dom";
 
-import { ModuleWorkspace } from "@/pages/module-workspace";
-import { MODULE_CONFIG } from "@/config/modules";
-import { cn } from "@/lib/utils";
-import type { ModuleId, WorkspaceTab } from "@/types";
+import { ModuleWorkspace } from "@studio/pages/module-workspace";
+import { MODULE_CONFIG } from "@studio/config/modules";
+import { cn } from "@studio/lib/utils";
+import type { ModuleId, WorkspaceTab } from "@studio/types";
 
 const TAB_LABELS: Record<WorkspaceTab, string> = {
   compose: "Compose",

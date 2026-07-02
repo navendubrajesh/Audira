@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
-import { scoreTone, scoreToneClass } from "@/lib/utils";
+import { cn } from "@studio/lib/utils";
+import { scoreTone, scoreToneClass } from "@studio/lib/utils";
 
 export function ScoreChip({
   score,

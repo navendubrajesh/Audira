@@ -1,8 +1,8 @@
 import { Sparkles, UserCircle2 } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
-import { StoryIdBadge } from "@/components/ui/badge";
-import { useAnalyzerStore } from "@/store/analyzer-store";
+import { Button } from "@studio/components/ui/button";
+import { StoryIdBadge } from "@studio/components/ui/badge";
+import { useAnalyzerStore } from "@studio/store/analyzer-store";
 
 // TODO(TCA-077): Persist persona preferences per tenant; fetch from audience library
 export function PersonaPicker() {

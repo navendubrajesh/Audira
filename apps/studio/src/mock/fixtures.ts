@@ -1,4 +1,4 @@
-import type { BacklogStory, CompetitorRow, DraftItem, Persona } from "@/types";
+import type { BacklogStory, CompetitorRow, DraftItem, Persona } from "@studio/types";
 import rawBacklog from "./backlog-data.json";
 
 export const PRODUCT_NAME = "Audira.run";

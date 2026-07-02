@@ -4,10 +4,10 @@ import {
   AnalyzerWorkspace,
   ComposeTab,
   GenericTabPlaceholder,
-} from "@/components/analyzer/analyzer-workspace";
-import { VerticalEpicGrid } from "@/pages/governance";
-import { EngagementHelperPage } from "@/pages/engagement-helper";
-import type { ModuleId } from "@/types";
+} from "@studio/components/analyzer/analyzer-workspace";
+import { VerticalEpicGrid } from "@studio/pages/governance";
+import { EngagementHelperPage } from "@studio/pages/engagement-helper";
+import type { ModuleId } from "@studio/types";
 
 const EPIC_MAP: Record<ModuleId, string[]> = {
   home: ["E01", "E09", "E14"],

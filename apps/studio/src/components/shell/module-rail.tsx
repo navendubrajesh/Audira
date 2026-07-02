@@ -13,10 +13,10 @@ import {
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
-import { MODULES } from "@/config/modules";
-import { cn } from "@/lib/utils";
-import { useUiStore } from "@/store/ui-store";
-import type { ModuleId } from "@/types";
+import { MODULES } from "@studio/config/modules";
+import { cn } from "@studio/lib/utils";
+import { useUiStore } from "@studio/store/ui-store";
+import type { ModuleId } from "@studio/types";
 
 const ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
   home: Home,

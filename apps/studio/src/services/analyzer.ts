@@ -1,4 +1,4 @@
-import type { FeedbackCategory } from "@/types";
+import type { FeedbackCategory } from "@studio/types";
 
 export interface ScoreRequest {
   text: string;

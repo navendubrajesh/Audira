@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 
-import { BacklogStatusBadge } from "@/components/ui/badge";
-import { competitors, backlogStories } from "@/mock/fixtures";
+import { BacklogStatusBadge } from "@studio/components/ui/badge";
+import { competitors, backlogStories } from "@studio/mock/fixtures";
 
 export function CompetitorLandscapePage() {
   const [filter, setFilter] = useState("");
