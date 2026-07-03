@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@studio/components/ui/button";
 import { PRODUCT_NAME } from "@studio/mock/fixtures";
 import { getGoogleLoginUrl } from "@studio/lib/auth";
+import { isStudioDev } from "@studio/lib/env-config";
 import { useAuthStore } from "@studio/store/auth-store";
 
 const ROLES = [
@@ -26,7 +27,7 @@ export function LoginPage() {
   const [loading, setLoading] = useState(false);
 
   const from = (location.state as { from?: string } | null)?.from ?? "/home";
-  const devMode = import.meta.env.DEV;
+  const devMode = isStudioDev();
 
   async function handleDevLogin(e: React.FormEvent) {
     e.preventDefault();

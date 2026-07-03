@@ -1,4 +1,6 @@
-const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
+import { resolveApiUrl } from "@studio/lib/env-config";
+
+const API_URL = resolveApiUrl();
 const SESSION_KEY = "audira_session";
 
 export type SessionUser = {
