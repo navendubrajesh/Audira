@@ -1,7 +1,15 @@
 import { resolveApiUrl } from "@studio/lib/env-config";
 
-const API_URL = resolveApiUrl();
 const SESSION_KEY = "audira_session";
+
+let cachedApiUrl: string | undefined;
+
+function apiUrl(): string {
+  if (cachedApiUrl === undefined) {
+    cachedApiUrl = resolveApiUrl();
+  }
+  return cachedApiUrl;
+}
 
 export type SessionUser = {
   user_id: string;
@@ -12,7 +20,7 @@ export type SessionUser = {
 };
 
 export function getApiUrl(): string {
-  return API_URL;
+  return apiUrl();
 }
 
 export function getSessionToken(): string | null {
@@ -32,7 +40,7 @@ export async function fetchMe(token?: string): Promise<SessionUser | null> {
   const authToken = token ?? getSessionToken();
   if (!authToken) return null;
 
-  const response = await fetch(`${API_URL}/auth/me`, {
+  const response = await fetch(`${apiUrl()}/auth/me`, {
     headers: { Authorization: `Bearer ${authToken}` },
   });
 
@@ -42,7 +50,7 @@ export async function fetchMe(token?: string): Promise<SessionUser | null> {
 
 export async function devLogin(email: string, role: string): Promise<string> {
   const response = await fetch(
-    `${API_URL}/auth/dev-login?email=${encodeURIComponent(email)}&role=${encodeURIComponent(role)}`,
+    `${apiUrl()}/auth/dev-login?email=${encodeURIComponent(email)}&role=${encodeURIComponent(role)}`,
     { method: "POST" },
   );
   if (!response.ok) throw new Error("Dev login failed");
@@ -53,7 +61,7 @@ export async function devLogin(email: string, role: string): Promise<string> {
 export async function logout(): Promise<void> {
   const token = getSessionToken();
   if (token) {
-    await fetch(`${API_URL}/auth/logout`, {
+    await fetch(`${apiUrl()}/auth/logout`, {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -62,7 +70,7 @@ export async function logout(): Promise<void> {
 }
 
 export function getGoogleLoginUrl(returnUrl?: string): string {
-  const base = `${API_URL}/auth/login`;
+  const base = `${apiUrl()}/auth/login`;
   if (returnUrl) {
     return `${base}?return_url=${encodeURIComponent(returnUrl)}`;
   }
