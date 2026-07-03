@@ -29,7 +29,7 @@ export function ScheduleTabPlaceholder({ module }: { module: ModuleId | string }
   if (loading) return <GlobalStatePanel variant="loading" />;
 
   return (
-    <div className="h-full overflow-y-auto p-6">
+    <div className="h-full min-h-0 overflow-y-auto p-6">
       <div className="flex items-center gap-2">
         <h2 className="font-display text-lg font-semibold">Schedule — {module}</h2>
         <StoryIdBadge id="TCA-011" />

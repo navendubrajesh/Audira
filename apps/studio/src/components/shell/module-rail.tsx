@@ -37,7 +37,7 @@ export function ModuleRail() {
   return (
     <nav
       className={cn(
-        "flex h-full shrink-0 flex-col border-r border-border bg-surface-raised py-3",
+        "flex h-full min-h-0 shrink-0 flex-col border-r border-border bg-surface-raised py-3",
         railExpanded ? "w-[var(--rail-width-expanded)]" : "w-[var(--rail-width)]",
       )}
       aria-label="Primary modules"
@@ -53,7 +53,7 @@ export function ModuleRail() {
         </button>
       </div>
 
-      <div className="flex flex-1 flex-col gap-1 px-2">
+      <div className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto px-2">
         {MODULES.map((mod, idx) => {
           const Icon = ICONS[mod.id === "home" ? "home" : mod.id === "social" ? "share2" : mod.id === "linkedin" ? "linkedin" : mod.id === "placement" ? "briefcase" : mod.id === "blog" ? "file-text" : mod.id === "analytics" ? "bar-chart3" : mod.id === "assets" ? "folder" : mod.id === "governance" ? "shield" : "settings"];
           return (

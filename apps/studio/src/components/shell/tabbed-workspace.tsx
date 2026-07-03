@@ -22,7 +22,7 @@ export function TabbedWorkspace({ module }: { module: ModuleId }) {
   const base = `/${module}/${contextId ?? "default"}`;
 
   return (
-    <section className="flex min-w-0 flex-1 flex-col bg-surface">
+    <section className="flex min-h-0 min-w-0 flex-1 flex-col bg-surface">
       <div
         className="flex items-center gap-1 border-b border-border bg-surface-raised px-4"
         role="tablist"
@@ -47,7 +47,7 @@ export function TabbedWorkspace({ module }: { module: ModuleId }) {
           </NavLink>
         ))}
       </div>
-      <div className="flex-1 overflow-hidden">
+      <div className="min-h-0 flex-1 overflow-hidden">
         <ModuleWorkspace module={module} />
       </div>
     </section>

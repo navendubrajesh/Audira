@@ -93,7 +93,7 @@ export function ContextList({ module }: { module: ModuleId }) {
 
   return (
     <aside
-      className="relative flex h-full shrink-0 flex-col border-r border-border bg-surface-raised"
+      className="relative flex h-full min-h-0 shrink-0 flex-col border-r border-border bg-surface-raised"
       style={{ width: contextWidth }}
       aria-label={`${config.label} context list`}
     >
@@ -136,7 +136,10 @@ export function ContextList({ module }: { module: ModuleId }) {
         </div>
       </header>
 
-      <div className="scrollbar-thin flex-1 overflow-y-auto p-2">
+      <div
+        className="scrollbar-thin min-h-0 flex-1 overflow-y-auto p-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+        tabIndex={0}
+      >
         {filteredSections.every((s) => s.items.length === 0) ? (
           <div className="px-3 py-8 text-center text-sm text-muted-foreground">
             <p>No items in this view.</p>

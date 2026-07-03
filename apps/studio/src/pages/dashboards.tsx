@@ -84,7 +84,7 @@ export function AnalyticsDashboard() {
   }, []);
 
   return (
-    <div className="h-full overflow-y-auto p-6">
+    <div className="h-full min-h-0 overflow-y-auto p-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40" tabIndex={0}>
       <h2 className="font-display text-xl font-semibold">Analytics & Insights Console</h2>
       <p className="text-sm text-muted-foreground">
         E14 — {dashboard ? `${dashboard.analyses_count} analyses · avg ${dashboard.avg_composite_score}` : "Loading…"}
@@ -151,7 +151,7 @@ export function AnalyticsDashboard() {
 
 export function HomeDashboard() {
   return (
-    <div className="h-full overflow-y-auto p-6">
+    <div className="h-full min-h-0 overflow-y-auto p-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40" tabIndex={0}>
       <h1 className="font-display text-2xl font-bold">Command Center</h1>
       <p className="text-sm text-muted-foreground">
         Cross-channel attention queue, comms health, and upcoming scheduled items.

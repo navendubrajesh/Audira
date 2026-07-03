@@ -56,7 +56,7 @@ export function ModuleWorkspace({ module }: { module: ModuleId }) {
 
   if (activeTab === "compose") {
     return (
-      <div className="h-full overflow-y-auto">
+      <div className="h-full min-h-0 overflow-y-auto">
         <ComposeTab module={module} />
         <div className="px-6 pb-6">
           <VerticalEpicGrid epicPrefixes={EPIC_MAP[module] ?? []} />
@@ -67,7 +67,7 @@ export function ModuleWorkspace({ module }: { module: ModuleId }) {
 
   if (activeTab === "schedule") {
     return (
-      <div className="h-full overflow-y-auto">
+      <div className="h-full min-h-0 overflow-y-auto">
         <ScheduleTabPlaceholder module={module} />
       </div>
     );
@@ -82,7 +82,7 @@ export function ModuleWorkspace({ module }: { module: ModuleId }) {
   }
 
   return (
-    <div className="h-full overflow-y-auto">
+    <div className="h-full min-h-0 overflow-y-auto">
       <GenericTabPlaceholder
         tab={activeTab}
         storyIds={TAB_STORIES[activeTab] ?? ["TCA-014"]}

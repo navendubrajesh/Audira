@@ -47,8 +47,11 @@ export function EngagementHelperPage() {
   if (loading) return <GlobalStatePanel variant="loading" />;
 
   return (
-    <div className="flex h-full">
-      <div className="w-80 shrink-0 overflow-y-auto border-r border-border p-4">
+    <div className="flex h-full min-h-0">
+      <div
+        className="w-80 min-h-0 shrink-0 overflow-y-auto border-r border-border p-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+        tabIndex={0}
+      >
         <h2 className="font-display text-sm font-semibold">Peer-post queue</h2>
         <StoryIdBadge id="TCA-088" />
         <ul className="mt-3 space-y-2">
@@ -69,7 +72,10 @@ export function EngagementHelperPage() {
           ))}
         </ul>
       </div>
-      <div className="flex-1 overflow-y-auto p-6">
+      <div
+        className="min-h-0 flex-1 overflow-y-auto p-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+        tabIndex={0}
+      >
         <h2 className="font-display text-lg font-semibold">Comment helper</h2>
         {post ? (
           <>

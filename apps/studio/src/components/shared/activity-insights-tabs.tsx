@@ -41,7 +41,7 @@ export function ActivityTab() {
   }
 
   return (
-    <div className="h-full overflow-y-auto p-6">
+    <div className="h-full min-h-0 overflow-y-auto p-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40" tabIndex={0}>
       <div className="mb-4 flex items-center gap-2">
         <h2 className="font-display text-lg font-semibold">Activity</h2>
         <StoryIdBadge id="TCA-053" />
@@ -87,7 +87,7 @@ export function InsightsTab() {
   }, []);
 
   return (
-    <div className="h-full overflow-y-auto p-6">
+    <div className="h-full min-h-0 overflow-y-auto p-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40" tabIndex={0}>
       <div className="mb-4 flex items-center gap-2">
         <h2 className="font-display text-lg font-semibold">Insights</h2>
         <StoryIdBadge id="TCA-014" />

@@ -55,7 +55,7 @@ export function AnalyzerWorkspace({ module = "linkedin" }: { module?: ModuleId }
 
   return (
     <PermissionGate permission="analyses.run">
-      <div className="flex h-full flex-col">
+      <div className="flex h-full min-h-0 flex-col">
         <header className="flex flex-wrap items-center gap-4 border-b border-border bg-surface-raised px-4 py-3">
           <ScoreGauge score={compositeScore} label="Composite effectiveness (TCA-038)" size="sm" />
           <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
@@ -134,7 +134,7 @@ export function AnalyzerWorkspace({ module = "linkedin" }: { module?: ModuleId }
 
         <div className="flex min-h-0 flex-1">
           <div
-            className="flex min-w-0 flex-col border-r border-border"
+            className="flex min-h-0 min-w-0 flex-col border-r border-border"
             style={{ width: `${mainSplitRatio * 100}%` }}
           >
             <div className="space-y-3 border-b border-border p-4">
@@ -181,7 +181,7 @@ export function AnalyzerWorkspace({ module = "linkedin" }: { module?: ModuleId }
           />
 
           <aside
-            className="flex min-w-0 flex-1 flex-col bg-surface-overlay/30"
+            className="flex min-h-0 min-w-0 flex-1 flex-col bg-surface-overlay/30"
             aria-label="Live feedback matrix"
             aria-live="polite"
           >
@@ -192,7 +192,10 @@ export function AnalyzerWorkspace({ module = "linkedin" }: { module?: ModuleId }
               ) : null}
               <StoryIdBadge id="TCA-087" />
             </div>
-            <div className="scrollbar-thin flex-1 space-y-3 overflow-y-auto p-4">
+            <div
+              className="scrollbar-thin min-h-0 flex-1 space-y-3 overflow-y-auto p-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+              tabIndex={0}
+            >
               {feedback.length === 0 && !isScoring ? (
                 <p className="text-sm text-muted-foreground">
                   Edit the draft to run live analysis against the API.
@@ -222,7 +225,7 @@ export function AnalyzerWorkspace({ module = "linkedin" }: { module?: ModuleId }
 
 export function ComposeTab({ module }: { module: string }) {
   return (
-    <div className="h-full overflow-y-auto p-6">
+    <div className="h-full min-h-0 overflow-y-auto p-6">
       <h2 className="font-display text-lg font-semibold">Compose — {module}</h2>
       <p className="mt-1 text-sm text-muted-foreground">
         Draft editor placeholder. Switch to Analyze for the split-panel workspace wired to{" "}
@@ -247,7 +250,7 @@ export function GenericTabPlaceholder({
   children?: React.ReactNode;
 }) {
   return (
-    <div className={cn("h-full overflow-y-auto p-6")}>
+    <div className={cn("h-full min-h-0 overflow-y-auto p-6")}>
       {children ?? (
         <>
           <h2 className="font-display text-lg font-semibold capitalize">{tab}</h2>
