@@ -2,26 +2,13 @@ import { Navigate, Route, Routes } from "react-router-dom";
 
 import { AuthGuard } from "@studio/components/auth/auth-guard";
 import { AppShell } from "@studio/components/shell/app-shell";
-import { TabbedWorkspace } from "@studio/components/shell/tabbed-workspace";
-import { getDefaultContextId } from "@studio/config/modules";
+import { VerticalModuleRoutes } from "@studio/routes/channel-routes";
 import { AnalyticsDashboard, HomeDashboard } from "@studio/pages/dashboards";
 import { CompetitorLandscapePage } from "@studio/pages/competitors";
 import { AssetsPage, GovernanceRoutes } from "@studio/pages/governance/index";
 import { SettingsRoutes } from "@studio/pages/settings/index";
 import { AuthCallbackPage } from "@studio/pages/auth-callback";
 import { LoginPage } from "@studio/pages/login";
-import type { ModuleId } from "@studio/types";
-
-function VerticalModuleRoutes({ module }: { module: ModuleId }) {
-  const defaultId = getDefaultContextId(module);
-  return (
-    <Routes>
-      <Route index element={<Navigate to={`${defaultId}/compose`} replace />} />
-      <Route path=":contextId" element={<Navigate to="compose" replace />} />
-      <Route path=":contextId/:tab" element={<TabbedWorkspace module={module} />} />
-    </Routes>
-  );
-}
 
 export function AppRoutes() {
   return (

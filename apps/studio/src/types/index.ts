@@ -70,6 +70,16 @@ export type WorkspaceTab =
   | "assets"
   | "activity";
 
+/** Channel workspace navigation categories (replaces horizontal tabs). */
+export type CategorySlug =
+  | "personas-audience"
+  | "assets-ingestion"
+  | "analyze-score"
+  | "engagement-community"
+  | "compose-drafting"
+  | "schedule-publishing"
+  | "insights-reporting";
+
 export interface Persona {
   id: string;
   label: string;
