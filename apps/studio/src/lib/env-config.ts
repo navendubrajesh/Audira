@@ -9,8 +9,7 @@ function readViteEnv(): MetaEnv {
   }
 }
 
-/** API base URL — Next (`NEXT_PUBLIC_API_URL`) or Vite (`VITE_API_URL`). */
-export function resolveApiUrl(): string {
+function configuredApiUrl(): string {
   if (typeof process !== "undefined" && process.env.NEXT_PUBLIC_API_URL) {
     return process.env.NEXT_PUBLIC_API_URL;
   }
@@ -21,6 +20,31 @@ export function resolveApiUrl(): string {
   return "http://localhost:8000";
 }
 
+/** External API URL — OAuth redirects must hit the API host directly. */
+export function resolveOAuthApiUrl(): string {
+  return configuredApiUrl();
+}
+
+/** API URL for browser fetch — same-origin proxy when API is cross-origin (avoids CORS). */
+export function resolveFetchApiUrl(): string {
+  const configured = configuredApiUrl();
+  if (typeof window !== "undefined") {
+    try {
+      const apiOrigin = new URL(configured).origin;
+      if (apiOrigin !== window.location.origin) {
+        return "/backend";
+      }
+    } catch {
+      // use configured value
+    }
+  }
+  return configured;
+}
+
+/** @deprecated Prefer resolveFetchApiUrl or resolveOAuthApiUrl. */
+export function resolveApiUrl(): string {
+  return resolveFetchApiUrl();
+}
 /** True in Vite dev or Next development builds. */
 export function isStudioDev(): boolean {
   if (typeof process !== "undefined" && process.env.NODE_ENV !== "production") {

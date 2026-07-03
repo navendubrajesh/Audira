@@ -1,5 +1,18 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+const OAUTH_API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 const SESSION_COOKIE = "audira_session";
+
+function fetchApiUrl(): string {
+  if (typeof window !== "undefined") {
+    try {
+      if (new URL(OAUTH_API_URL).origin !== window.location.origin) {
+        return "/backend";
+      }
+    } catch {
+      // use configured URL
+    }
+  }
+  return OAUTH_API_URL;
+}
 
 export type SessionUser = {
   user_id: string;
@@ -10,7 +23,7 @@ export type SessionUser = {
 };
 
 export function getApiUrl(): string {
-  return API_URL;
+  return fetchApiUrl();
 }
 
 export function getSessionToken(): string | null {
@@ -33,7 +46,7 @@ export async function fetchMe(token?: string): Promise<SessionUser | null> {
   const authToken = token ?? getSessionToken();
   if (!authToken) return null;
 
-  const response = await fetch(`${API_URL}/auth/me`, {
+  const response = await fetch(`${fetchApiUrl()}/auth/me`, {
     headers: { Authorization: `Bearer ${authToken}` },
     cache: "no-store",
   });
@@ -44,7 +57,7 @@ export async function fetchMe(token?: string): Promise<SessionUser | null> {
 
 export async function devLogin(email: string, role: string): Promise<string> {
   const response = await fetch(
-    `${API_URL}/auth/dev-login?email=${encodeURIComponent(email)}&role=${encodeURIComponent(role)}`,
+    `${fetchApiUrl()}/auth/dev-login?email=${encodeURIComponent(email)}&role=${encodeURIComponent(role)}`,
     { method: "POST" },
   );
   if (!response.ok) throw new Error("Dev login failed");
@@ -55,7 +68,7 @@ export async function devLogin(email: string, role: string): Promise<string> {
 export async function logout(): Promise<void> {
   const token = getSessionToken();
   if (token) {
-    await fetch(`${API_URL}/auth/logout`, {
+    await fetch(`${fetchApiUrl()}/auth/logout`, {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -64,5 +77,5 @@ export async function logout(): Promise<void> {
 }
 
 export function getGoogleLoginUrl(): string {
-  return `${API_URL}/auth/login`;
+  return `${OAUTH_API_URL}/auth/login`;
 }

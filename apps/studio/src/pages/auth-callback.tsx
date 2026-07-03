@@ -13,7 +13,10 @@ export function AuthCallbackPage() {
     const params = new URLSearchParams(hash);
     const token = params.get("token");
     if (token) {
-      void signInWithToken(token).then(() => navigate("/home", { replace: true }));
+      void signInWithToken(token).then(() => {
+        const { user } = useAuthStore.getState();
+        navigate(user ? "/home" : "/login", { replace: true });
+      });
     } else {
       navigate("/login", { replace: true });
     }

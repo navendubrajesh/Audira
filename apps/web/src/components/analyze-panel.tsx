@@ -3,9 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { ScoreGauge } from "@/components/score-gauge";
-import type { SessionUser } from "@/lib/auth";
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+import { getApiUrl, type SessionUser } from "@/lib/auth";
 
 const OBJECTIVES = ["inform", "engage", "drive_action", "reassure", "celebrate"] as const;
 
@@ -36,7 +34,7 @@ export function AnalyzePanel({ token }: { token: string; user: SessionUser }) {
 
   useEffect(() => {
     void (async () => {
-      const res = await fetch(`${API_URL}/audiences`, {
+      const res = await fetch(`${getApiUrl()}/audiences`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.ok) {
@@ -51,7 +49,7 @@ export function AnalyzePanel({ token }: { token: string; user: SessionUser }) {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`${API_URL}/analyze`, {
+      const res = await fetch(`${getApiUrl()}/analyze`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

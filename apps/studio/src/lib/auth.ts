@@ -1,4 +1,4 @@
-import { resolveApiUrl } from "@studio/lib/env-config";
+import { resolveFetchApiUrl, resolveOAuthApiUrl } from "@studio/lib/env-config";
 
 const SESSION_COOKIE = "audira_session";
 
@@ -6,7 +6,7 @@ let cachedApiUrl: string | undefined;
 
 function apiUrl(): string {
   if (cachedApiUrl === undefined) {
-    cachedApiUrl = resolveApiUrl();
+    cachedApiUrl = resolveFetchApiUrl();
   }
   return cachedApiUrl;
 }
@@ -97,7 +97,7 @@ export async function logout(): Promise<void> {
 }
 
 export function getGoogleLoginUrl(returnUrl?: string): string {
-  const base = `${apiUrl()}/auth/login`;
+  const base = `${resolveOAuthApiUrl()}/auth/login`;
   if (returnUrl) {
     return `${base}?return_url=${encodeURIComponent(returnUrl)}`;
   }

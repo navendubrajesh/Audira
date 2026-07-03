@@ -38,10 +38,17 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         return;
       }
       const user = await fetchMe(token);
+      if (!user) {
+        clearSession();
+      }
       set({ user, loading: false, initialized: true });
     } catch {
-      clearSession();
-      set({ user: null, loading: false, initialized: true });
+      set({
+        user: null,
+        loading: false,
+        initialized: true,
+        error: "Could not reach the API. Check your connection and try again.",
+      });
     }
   },
 
@@ -59,9 +66,24 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   },
 
   signInWithToken: async (token) => {
+    set({ loading: true, error: null });
     setSessionToken(token);
-    const user = await fetchMe(token);
-    set({ user, loading: false, initialized: true });
+    try {
+      const user = await fetchMe(token);
+      if (!user) {
+        clearSession();
+        set({ user: null, loading: false, initialized: true, error: "Sign-in failed." });
+        return;
+      }
+      set({ user, loading: false, initialized: true, error: null });
+    } catch {
+      set({
+        user: null,
+        loading: false,
+        initialized: true,
+        error: "Could not reach the API. Check your connection and try again.",
+      });
+    }
   },
 
   signOut: async () => {
