@@ -1,24 +1,32 @@
 type MetaEnv = Record<string, string | boolean | undefined>;
 
-function viteEnv(): MetaEnv {
-  return (import.meta as unknown as { env: MetaEnv }).env;
+/** Safe read of Vite `import.meta.env` — webpack/Next may stub `import.meta` without `.env`. */
+function readViteEnv(): MetaEnv {
+  try {
+    return (import.meta as unknown as { env?: MetaEnv }).env ?? {};
+  } catch {
+    return {};
+  }
 }
 
-/** API base URL — Vite (`VITE_API_URL`) or Next (`NEXT_PUBLIC_API_URL`). */
+/** API base URL — Next (`NEXT_PUBLIC_API_URL`) or Vite (`VITE_API_URL`). */
 export function resolveApiUrl(): string {
-  const fromVite = viteEnv().VITE_API_URL;
-  if (typeof fromVite === "string" && fromVite.length > 0) return fromVite;
-
   if (typeof process !== "undefined" && process.env.NEXT_PUBLIC_API_URL) {
     return process.env.NEXT_PUBLIC_API_URL;
   }
+
+  const fromVite = readViteEnv().VITE_API_URL;
+  if (typeof fromVite === "string" && fromVite.length > 0) return fromVite;
 
   return "http://localhost:8000";
 }
 
 /** True in Vite dev or Next development builds. */
 export function isStudioDev(): boolean {
-  const dev = viteEnv().DEV;
-  if (typeof dev === "boolean") return dev;
-  return typeof process !== "undefined" && process.env.NODE_ENV !== "production";
+  if (typeof process !== "undefined" && process.env.NODE_ENV !== "production") {
+    return true;
+  }
+
+  const dev = readViteEnv().DEV;
+  return typeof dev === "boolean" ? dev : false;
 }
