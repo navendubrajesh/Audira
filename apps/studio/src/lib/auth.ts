@@ -1,6 +1,6 @@
 import { resolveApiUrl } from "@studio/lib/env-config";
 
-const SESSION_KEY = "audira_session";
+const SESSION_COOKIE = "audira_session";
 
 let cachedApiUrl: string | undefined;
 
@@ -9,6 +9,14 @@ function apiUrl(): string {
     cachedApiUrl = resolveApiUrl();
   }
   return cachedApiUrl;
+}
+
+function readCookieToken(): string | null {
+  if (typeof document === "undefined") return null;
+  const match = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith(`${SESSION_COOKIE}=`));
+  return match ? decodeURIComponent(match.split("=")[1]) : null;
 }
 
 export type SessionUser = {
@@ -24,16 +32,35 @@ export function getApiUrl(): string {
 }
 
 export function getSessionToken(): string | null {
-  if (typeof localStorage === "undefined") return null;
-  return localStorage.getItem(SESSION_KEY);
+  const fromCookie = readCookieToken();
+  if (fromCookie) return fromCookie;
+
+  // Migrate legacy Vite sessions stored in localStorage.
+  if (typeof localStorage !== "undefined") {
+    const legacy = localStorage.getItem(SESSION_COOKIE);
+    if (legacy) {
+      setSessionToken(legacy);
+      localStorage.removeItem(SESSION_COOKIE);
+      return legacy;
+    }
+  }
+
+  return null;
 }
 
 export function setSessionToken(token: string): void {
-  localStorage.setItem(SESSION_KEY, token);
+  if (typeof document !== "undefined") {
+    document.cookie = `${SESSION_COOKIE}=${encodeURIComponent(token)}; path=/; max-age=86400; SameSite=Lax`;
+  }
 }
 
 export function clearSession(): void {
-  localStorage.removeItem(SESSION_KEY);
+  if (typeof document !== "undefined") {
+    document.cookie = `${SESSION_COOKIE}=; path=/; max-age=0`;
+  }
+  if (typeof localStorage !== "undefined") {
+    localStorage.removeItem(SESSION_COOKIE);
+  }
 }
 
 export async function fetchMe(token?: string): Promise<SessionUser | null> {

@@ -92,7 +92,7 @@ export function LoginPage() {
             </Button>
           </form>
         ) : (
-          <a href={getGoogleLoginUrl(window.location.origin + "/auth/callback")}>
+          <a href={getGoogleLoginUrl(window.location.origin)}>
             <Button className="w-full">Continue with Google</Button>
           </a>
         )}

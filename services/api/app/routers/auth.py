@@ -20,6 +20,14 @@ from app.services.user_service import get_user_by_workos_id, upsert_user_from_ss
 router = APIRouter(prefix="/auth", tags=["auth"])
 
 
+def _frontend_callback_url(return_url: str, token: str) -> str:
+    """Build the browser callback URL; avoid duplicating /auth/callback."""
+    base = return_url.rstrip("/")
+    if base.endswith("/auth/callback"):
+        return f"{base}#token={token}"
+    return f"{base}/auth/callback#token={token}"
+
+
 class MeResponse(BaseModel):
     user_id: str
     email: str
@@ -112,7 +120,7 @@ async def callback(
     )
 
     return RedirectResponse(
-        f"{return_url}/auth/callback#token={token}",
+        _frontend_callback_url(return_url, token),
         status_code=status.HTTP_303_SEE_OTHER,
     )
 

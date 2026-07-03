@@ -14,7 +14,7 @@ export function AppRoutes() {
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/auth/callback" element={<AuthCallbackPage />} />
+      <Route path="/auth/callback/*" element={<AuthCallbackPage />} />
 
       <Route element={<AuthGuard />}>
         <Route path="/" element={<Navigate to="/home" replace />} />
